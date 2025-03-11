@@ -53,7 +53,7 @@ Backend Application for this application is following repository: https://github
 	- Open Termnal and locate to project root directory:<br>
 `cd D:\Downloads\projectName`
 	- Install all Angular dependencies by typing following command in terminal:<br>
-`npm install`
+`npm install --legacy-peer-deps`
 
 5. Run Angular Application:
 	- Open Termnal and locate to project root directory:<br>
