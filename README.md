@@ -14,7 +14,7 @@ This is a real-time private one-to-one chat application built using [HTML](https
 The Real-Time Private Chat Application is designed to facilitate secure and private conversations between users. With a focus on user experience and performance, this application leverages modern web technologies to deliver a robust messaging platform.
 
 ### Backend Application
-Backend Application for this application is following repository: https://github.com/lmicovic/spring-chat-application
+Backend Application for this application is at following repository: https://github.com/lmicovic/spring-chat-application
 
 ## Features
 
