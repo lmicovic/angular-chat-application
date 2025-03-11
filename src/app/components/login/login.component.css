@@ -1,0 +1,317 @@
+.main-container {
+    width: 100%;
+    height: 100vh;
+}
+
+.logo-container {
+    position: relative;
+    width: 300px;
+    height: 220px;
+    text-align: center;
+    margin: 20px auto;
+    padding: 40px;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    background-color: rgba(150, 150, 150, 0.05);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+}
+
+.logo-container:hover {
+    cursor: pointer;
+}
+
+.application-logo {
+    width: 150px;
+    height: auto;
+}
+
+.background {
+    position: absolute;
+    z-index: -1;
+    bottom: 54px;
+    left: 78px;
+    width: 143px;
+    height: 10px;
+    background-color: #e5d8b4;
+}
+
+
+.login-container {
+    /* background-color: red; */
+}
+
+.login-header-container {
+    text-align: center;
+}
+
+.login-header {
+    color: #F9F6EE;
+    margin: 25px 0px 25px 0px;
+}
+
+form {
+    text-align: center;
+}
+
+.form-password-container {
+  /* background-color: red; */
+  position: relative;
+}
+
+#login-password {
+  /* position: absolute; */
+}
+
+.login-password-show-password-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  background-color: rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0, 0.5);
+  border-radius: 5px;
+}
+
+.login-password-show-password-button:hover {
+  cursor: pointer;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.login-password-show-password-button:active {
+  background-color: rgba(0,0,0,0.2);
+}
+
+.login-show-password-icon {
+  color: white;
+}
+
+
+.validation-alert {
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: #FFC107;
+}
+
+#login-global-validation-message {
+  display: none;
+}
+
+#signin-gloabl-validation-message {
+  display: none;
+}
+
+#confirm-password-validation-container {
+  display: none;
+}
+
+/* .form-email-container {
+    margin-bottom: 10px;
+} */
+
+form input {
+    background-color: rgba(0,0,0,0.12);
+    outline: none;
+    height: 30px;
+    border: 1px solid rgba(0,0,0, 0.5);
+    padding: 3px 7px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    color: #F9F6EE;
+}
+
+form input:focus {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+    border: 1px solid black;
+    background-color: rgba(0,0,0,0.08);
+}
+
+.sign-in-container {
+    margin-top: 14px;
+}
+
+.sign-in-link {
+    font-size: 12px;
+    color: #00FFFF;
+    
+}
+
+.login-button {
+    width: 80px;
+    height: 26px;
+    margin-top: 24px;
+    border: none;
+    border-radius: 10px;
+    color: #F9F6EE;
+    background: linear-gradient(to top, rgba(94,68,255, 0.7) 30%, rgba(37,166,227, 0.6));    
+}
+
+.login-button:hover {
+    cursor: pointer;
+    background: linear-gradient(to top, rgba(94,68,255, 0.6) 30%, rgba(37,166,227, 0.5));
+}
+
+.login-button:active {
+    background: linear-gradient(to top, rgba(94,68,255, 0.5) 30%, rgba(37,166,227, 0.4));
+}
+
+.oauth-container {
+    /* border: 1px solid black;s */
+    /* border-radius: 15px; */
+    /* height: 100px; */
+    margin: 30px 40px 40px 40px;
+    text-align: center;
+}
+
+/* aouth - Google */
+.gsi-material-button {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-appearance: none;
+    background-color: #f2f2f2;
+    background-image: none;
+    border: none;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #1f1f1f;
+    cursor: pointer;
+    font-family: 'Roboto', arial, sans-serif;
+    font-size: 14px;
+    height: 40px;
+    letter-spacing: 0.25px;
+    outline: none;
+    overflow: hidden;
+    padding: 0 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
+    transition: background-color .218s, border-color .218s, box-shadow .218s;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 200px;
+    max-width: 400px;
+    min-width: min-content;
+  }
+
+  .gsi-material-button .gsi-material-button-icon {
+    height: 20px;
+    margin-right: 12px;
+    min-width: 20px;
+    width: 20px;
+  }
+  
+  .gsi-material-button .gsi-material-button-content-wrapper {
+    -webkit-align-items: center;
+    align-items: center;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    height: 100%;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+  }
+  
+  .gsi-material-button .gsi-material-button-contents {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    font-family: 'Roboto', arial, sans-serif;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+  }
+  
+  .gsi-material-button .gsi-material-button-state {
+    -webkit-transition: opacity .218s;
+    transition: opacity .218s;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  .gsi-material-button:disabled {
+    cursor: default;
+    background-color: #ffffff61;
+  }
+  
+  .gsi-material-button:disabled .gsi-material-button-state {
+    background-color: #1f1f1f1f;
+  }
+  
+  .gsi-material-button:disabled .gsi-material-button-contents {
+    opacity: 38%;
+  }
+  
+  .gsi-material-button:disabled .gsi-material-button-icon {
+    opacity: 38%;
+  }
+  
+  .gsi-material-button:not(:disabled):active .gsi-material-button-state, 
+  .gsi-material-button:not(:disabled):focus .gsi-material-button-state {
+    background-color: #001d35;
+    opacity: 12%;
+  }
+  
+  .gsi-material-button:not(:disabled):hover {
+    -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+  }
+  
+  .gsi-material-button:not(:disabled):hover .gsi-material-button-state {
+    background-color: #001d35;
+    opacity: 8%;
+  }
+
+/* aouth - Google - END */
+
+
+
+@media only screen and (max-width: 1000px) {
+
+    /* form input {
+        background-color: rgba(0,0,0,0.12);
+        outline: none;
+        border: 1px solid rgba(0,0,0, 0.5);
+        padding: 3px 7px;
+        border-radius: 6px;
+        color: #F9F6EE;
+    }    */
+
+    form input {
+        width: 80%;
+        height: 40px;
+    }
+
+    form input[type=password] {
+      padding-right: 45px;
+    }
+
+    .login-password-show-password-button {
+      width: 40px;
+      height: 40px;
+      margin-left: 0px;
+      right: 10%;
+      border: none;
+    }
+
+    #signin-confirm-password-button {
+      right: 13.9%;
+    }
+
+    .login-button {
+        width: 50%;
+        height: 40px;
+        margin-top: 40px;
+        
+    }
+
+}

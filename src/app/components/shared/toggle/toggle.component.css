@@ -1,0 +1,45 @@
+.main-container {
+    /* background-color: red; */
+    text-align: center; /* Center text inside the container */
+    margin-bottom: 5px;
+
+}
+
+.toggle-list {
+    list-style: none;
+    /* display: inline-block; */
+}
+
+.toggle-list-item {
+    display: inline-block;
+    padding: 5px 8px;
+    font-size: 13px;
+    color: #8d8d8d;   
+    user-select: none; /* For modern browsers */
+    -moz-user-select: none; /* Firefox */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.toggle-list-item:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.3);
+    color: #F9F6EE;
+    border-radius: 10px;
+}
+
+.toggle-list-item:active {
+    background-color: rgba(0,0,0,0.2);
+}
+
+.toggle-list-item:not(:first-child):not(:last-child) {
+    /* background-color: red; */
+    margin: 0px 3px;
+}
+
+/* Apply style to list-item that is currently active */
+.active-list {
+    background-color: rgba(0,0,0,0.4);
+    color: #F9F6EE;
+    border-radius: 10px;
+}

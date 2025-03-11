@@ -1,0 +1,87 @@
+.main-container {
+    /* background-color: rgba(0,0,0,0.12); */
+    position: relative;
+    background-color: rgba(0,0,0,0.05 );
+    width: 100%;
+    height: 85px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.input-field-container {
+    width: 100%;
+    text-align: center;
+}
+
+.text-area-component {
+
+    width: 85%;
+    display: inline-block;
+    /* border-radius: 10px; */
+    height: 65px;
+    padding: 10px;
+    outline: none;
+    background-color: rgba(0,0,0,0.12);
+    border-right-color: transparent;
+    border-left-color: transparent;
+    color: #F9F6EE;
+    resize: none;
+}
+
+.send-button {
+    position: absolute;
+    width: 5.5%;
+    height: 65px;
+    border: 1px solid #737373;
+    border-left-color: rgba(115, 115, 115, 0.5);
+    border-left-width: 0.9px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgba(0,0,0,0.12);
+}
+
+.send-button:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.send-button:active {
+    background-color: rgba(0,0,0,0.35);
+}
+
+.send-icon {
+    font-size: 20px;
+    color: #ece3ca;
+}
+
+.attach-button {
+    position: absolute;
+    left: calc(2.25%);
+    width: 5.5%;
+    height: 65px;
+    border: 1px solid #737373;
+    border-right-color: rgba(115, 115, 115, 0.5);
+    border-right-width: 0.9px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(0,0,0,0.12);
+}
+
+.attach-button:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.attach-button:active {
+    background-color: rgba(0,0,0,0.35);
+}
+
+.attach-button {
+    font-size: 20px;
+    color: #ece3ca;
+}
+
+.attach-icon {
+    font-size: 16px;
+    color: #ece3ca;
+}

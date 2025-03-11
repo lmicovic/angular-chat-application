@@ -1,0 +1,20 @@
+.main-container {
+    
+}
+
+.logo-container {
+    padding: 15px;
+    margin-left: 5px;
+    padding-top: 16px;
+}
+
+.logo-container img {
+    width: 150px; 
+    height: auto;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.logo-container img:hover {
+    cursor: pointer;
+}

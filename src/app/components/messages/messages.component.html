@@ -1,0 +1,72 @@
+<app-card [styles]="{height: '500px'}">
+
+    <div class="card-content">
+        
+        <div class="message-header-container">
+            
+            <div class="message-header-message-user-info-container">
+
+                <div class="user-image-profile-container">
+                    <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
+                </div>
+
+                <div class="user-message-profile-information-container">
+                    <div class="user-message-profile-information-user-name">
+                        Chat with Pera
+                    </div>
+                    <div class="user-message-profile-information-message-number">
+                        1254 Messages
+                    </div>
+                </div>
+
+                <div class="icon-container">
+                    <i class="fa-solid fa-video icon video-icon" title="Video call"></i>
+                    <i class="fa-solid fa-phone icon phone-icon" title="Voice call"></i>
+                </div>
+
+            </div>
+
+            <div class="user-message-option-container">
+                
+                <!-- <div class="drop-down">
+                    
+                    <div class="drop-down-button-container">
+                        <button class="drop-down-button"><i class="fa-solid fa-ellipsis-vertical menu-icon"></i></button>
+                    </div>
+
+                </div> -->
+
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="fa-solid fa-ellipsis-vertical menu-icon"></i></button>
+                    <div class="dropdown-content">
+                      <a href="#" class="dropdown-item"><i class="fa-solid fa-user"></i>View profile</a>
+                      <a href="#" class="dropdown-item"><i class="fa-solid fa-people-group"></i>Add to friend list</a>
+                      <a href="#" class="dropdown-item"><i class="fa-solid fa-plus"></i> Add to group</a>
+                      <a href="#" class="dropdown-item"><i class="fa-regular fa-circle-xmark"></i> Block</a>
+                    </div>
+                </div>
+                
+
+            </div>
+
+        </div>
+
+
+        <div class="message-box-container">
+            
+            <div class="message-box-container">
+                <app-message-box></app-message-box>
+            </div>
+            
+            <div class="text-input-container">
+                <app-text-input></app-text-input>
+            </div>
+
+            
+
+        </div>
+
+
+    </div>
+
+</app-card>

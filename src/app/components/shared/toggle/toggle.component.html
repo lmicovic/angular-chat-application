@@ -1,0 +1,10 @@
+<div class="main-container">
+
+    <ul class="toggle-list">
+        <li class="toggle-list-item" [id]="'toggle-list-item-' + i" [ngClass]="{'active-list': activeItem === i}" *ngFor="let item of items; let i = index" (click)="onItem(i)">{{item}}</li>
+        <!-- <li class="toggle-list-item">All</li>
+        <li class="toggle-list-item active-list">Friend List</li>
+        <li class="toggle-list-item">Online</li> -->
+    </ul>
+
+</div>

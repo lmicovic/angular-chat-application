@@ -1,0 +1,5 @@
+.main-container {
+    background-color: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border-radius: 10px; /* Optional: round the corners */
+}

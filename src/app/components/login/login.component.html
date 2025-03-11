@@ -1,0 +1,206 @@
+<div class="main-container">
+
+    <app-card [styles]="cardStyle">
+
+        <div class="card-content">
+            
+            <div class="logo-container">
+                <img src="../../../assets/images/logo-3.png" class="application-logo" alt="Application Logo" />
+                <div class="background">
+
+                </div>
+            </div>
+
+            <!-- <hr> -->
+
+            <div class="form-content" *ngIf="showLoginTemplate === true">
+                <ng-container [ngTemplateOutlet]="loginTemplate"></ng-container>
+            </div>
+
+            <div class="form-content" *ngIf="showLoginTemplate === false">
+                <ng-container [ngTemplateOutlet]="signinTemplate"></ng-container>
+            </div>
+
+            
+        </div>
+
+    </app-card>
+
+</div>
+
+
+
+
+<!-- Login Template -->
+<ng-template #loginTemplate>
+    <div class="login-container">
+
+        <div class="login-header-container">
+            <h2 class="login-header">Login</h2>
+        </div>
+
+        <form [formGroup]="loginForm">
+
+            <div class="form-email-container">
+                <input type="text" formControlName="email" name="email" id="email" placeholder="Email" [ngStyle]="{marginBottom: loginForm.get('email')?.invalid && loginForm.get('email')?.touched ? '0px' : '10px'}" />
+                <div class="validation-alert" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                    <span *ngIf="loginForm.get('email')?.getError('required')">*Email is required.</span>
+                    <span *ngIf="loginForm.get('email')?.getError('email')">*Invalid email format.</span>
+                </div>
+            </div>
+
+            <div class="form-password-container">
+                
+                <div class="login-password-container">
+                    <input [type]="isLoginShowPassword ? 'text' : 'password'" formControlName="password" formControlName="password" name="login-password" id="login-password" placeholder="Password" [ngStyle]="{marginBottom: loginForm.get('email')?.invalid && loginForm.get('email')?.touched ? '0px' : '10px'}" />
+                    <button class="login-password-show-password-button" (click)="loginShowPassword()">
+                        <i class="fa-solid fa-eye login-show-password-icon login-show-password-icon-on" *ngIf="isLoginShowPassword === true"></i>
+                        <i class="fa-solid fa-eye-slash login-show-password-icon login-show-password-icon-on" *ngIf="isLoginShowPassword === false"></i>
+                    </button>
+                </div>
+                <div class="validation-alert" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                    <span *ngIf="loginForm.get('password')?.getError('required')">*Password is required.</span>
+                    <span *ngIf="loginForm.get('password')?.getError('pattern')">*Invalid password format.</span>
+                </div>
+            </div>
+
+            <div class="validation-alert" id="login-global-validation-message">
+                <span>*Please fill in all required fields.</span>
+            </div>
+
+            <div class="sign-in-container">
+                <a href="#" class="sign-in-link" (click)="changeToSigninTemplate($event)">Don't have an accaount? Sign in</a>
+            </div>
+
+            <button class="login-button" (click)="onLogin()">Login</button>
+
+        </form>
+
+    </div>
+
+    <div class="oauth-container">
+
+        <div class="google-oauth-container">
+            <button class="gsi-material-button" (click)="onGoogleLoginButton()">
+                <div class="gsi-material-button-state"></div>
+                <div class="gsi-material-button-content-wrapper">
+                  <div class="gsi-material-button-icon">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
+                      <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                      <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                      <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                      <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                      <path fill="none" d="M0 0h48v48H0z"></path>
+                    </svg>
+                  </div>
+                  <span class="gsi-material-button-contents">Login with Google</span>
+                  <span style="display: none;">Sign in with Google</span>
+                </div>
+              </button>
+        </div>
+
+    </div>
+</ng-template>
+<!-- Login Template - END -->
+
+
+
+
+<!-- Sign in Template -->
+<ng-template #signinTemplate>
+    <div class="login-container">
+
+        <div class="login-header-container">
+            <h2 class="login-header">Sign In</h2>
+        </div>
+
+        <form [formGroup]="signinForm">
+
+            <div class="form-firstname-container">
+                <input type="text" formControlName="firstname" name="signin-firstname-value" id="signin-firstname-value" placeholder="Firstname" [ngStyle]="{marginBottom: signinForm.get('firstname')?.invalid && signinForm.get('firstname')?.touched ? '0px' : '10px'}" />
+                <div class="validation-alert" *ngIf="signinForm.get('firstname')?.invalid && signinForm.get('firstname')?.touched">
+                    <span *ngIf="signinForm.get('firstname')?.getError('required')">*Firstname is required.</span>
+                </div>
+            </div>
+
+            <div class="form-lastname-container">
+                <input type="text" formControlName="lastname" name="signin-lastname-value" id="signin-lastname-value" placeholder="Lastname" [ngStyle]="{marginBottom: signinForm.get('lastname')?.invalid && signinForm.get('lastname')?.touched ? '0px' : '10px'}" />
+                <div class="validation-alert" *ngIf="signinForm.get('lastname')?.invalid && signinForm.get('lastname')?.touched">
+                    <span *ngIf="signinForm.get('lastname')?.getError('required')">*Lastname is required.</span>
+                </div>
+            </div>
+
+            <div class="form-email-container">
+                <input type="text" formControlName="email" name="signin-email-value" id="signin-email-value" placeholder="Email" [ngStyle]="{marginBottom: signinForm.get('email')?.invalid && signinForm.get('email')?.touched ? '0px' : '10px'}" />
+                <div class="validation-alert" *ngIf="signinForm.get('email')?.invalid && signinForm.get('email')?.touched">
+                    <span *ngIf="signinForm.get('email')?.getError('required')">*Email is required.</span>
+                    <span *ngIf="signinForm.get('email')?.getError('email')">*Invalid email format.</span>
+                    <span *ngIf="signinForm.get('email')?.getError('exist')">*This email address is already registered.</span>
+                </div>
+            </div>
+
+            <div class="form-password-container">
+                <input [type]="isSigninShowPassword ? 'text' : 'password'" formControlName="password" name="signin-password-value" id="signin-password-value" placeholder="Password" [ngStyle]="{marginBottom: signinForm.get('password')?.invalid && signinForm.get('password')?.touched ? '0px' : '10px'}" />
+                <button class="login-password-show-password-button" (click)="signinShowPassword($event)">
+                    <i class="fa-solid fa-eye login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowPassword === true"></i>
+                    <i class="fa-solid fa-eye-slash login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowPassword === false"></i>
+                </button>
+                <div class="validation-alert" *ngIf="signinForm.get('password')?.invalid && signinForm.get('password')?.touched">
+                    <span *ngIf="signinForm.get('password')?.getError('required')">*Password is required.</span>
+                    <span *ngIf="signinForm.get('password')?.getError('pattern')">*Invalid passowrd format.</span>
+                </div>
+            </div>
+
+            <div class="form-confirm-password-container" >
+                <input [type]="isSigninShowConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" name="signin-confirm-password-value" id="signin-confirm-password-value" placeholder="Confirm Password" [ngStyle]="{marginBottom: signinForm.get('confirmPassword')?.invalid && signinForm.get('confirmPassword')?.touched ? '0px' : '10px'}" />
+                <button class="login-password-show-password-button" id="signin-confirm-password-button" (click)="signinShowConfirmPassword($event)">
+                    <i class="fa-solid fa-eye login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowConfirmPassword === true"></i>
+                    <i class="fa-solid fa-eye-slash login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowConfirmPassword === false"></i>
+                </button>
+                <div class="validation-alert" *ngIf="signinForm.get('confirmPassword')?.invalid && signinForm.get('confirmPassword')?.touched">
+                    <span *ngIf="signinForm.get('confirmPassword')?.getError('required')">*Confirm Password is required.</span>
+                    <!-- Check if ConfirmPassword is same as Password -->
+                </div>
+                <div class="validation-alert" id="confirm-password-validation-container">
+                    *Passwords do not match.
+                </div>
+            </div>
+
+            <div class="validation-alert" id="signin-gloabl-validation-message">
+                <span>*Please fill in all required fields.</span>
+            </div>
+
+            <div class="sign-in-container">
+                <a href="#" class="sign-in-link" (click)="changeToSigninTemplate($event)">Already have an account? Login</a>
+            </div>
+
+            <button class="login-button" (click)="onSignin($event)">Sign In</button>
+
+        </form>
+
+    </div>
+
+    <div class="oauth-container">
+
+        <div class="google-oauth-container">
+            <button class="gsi-material-button" (click)="onGoogleSigninButton()">
+                <div class="gsi-material-button-state"></div>
+                <div class="gsi-material-button-content-wrapper">
+                  <div class="gsi-material-button-icon">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
+                      <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                      <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                      <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                      <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                      <path fill="none" d="M0 0h48v48H0z"></path>
+                    </svg>
+                  </div>
+                  <span class="gsi-material-button-contents">Sign In with Google</span>
+                  <!-- <span style="display: none;">Sign in with Google</span> -->
+                </div>
+              </button>
+        </div>
+
+    </div>
+</ng-template>
+<!-- Sign in Template - END -->
