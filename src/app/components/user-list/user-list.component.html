@@ -3,155 +3,105 @@
     <div class="card-content">
         <app-search-bar [styles]="{padding: '15px'}"></app-search-bar>
 
-        <app-toggle [items]="['All', 'Friend List', 'Online']" [activeItem]="1"></app-toggle>
+        <app-toggle [items]="['All', 'Friend List', 'Online']" [activeItem]="1" (optionEmmiter)="getSelectedOption($event)"></app-toggle>
 
         <!-- User List -->
         <div class="user-list-container">
-    
-            <ul class="user-list">
+            
+            <!-- Selected All Users Menu -->
+            <ng-container *ngIf="selectedOption === menuOption[0]">
+                <ng-container [ngTemplateOutlet]="allUserListTemplate"></ng-container>
+            </ng-container>
 
-                
-                <li class="user-list-item">
-                    <div class="user-list-item-info-container">
-                        <div class="user-list-item-info-image-container">
-                            <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
-                        </div>
-                        
-                        <div class="user-list-item-sub-info-container">
-                            <h3>Pera Peric</h3>
-                            <div class="user-list-item-sub-info-user-status-container">
-                                Pera is online
-                            </div>
-                        </div>
-                    </div>          
-                </li>
+            <ng-container *ngIf="selectedOption === menuOption[1]">
+                <ng-container [ngTemplateOutlet]="friendListTemplate"></ng-container>
+            </ng-container>
 
-                <li class="user-list-item">
-                    <div class="user-list-item-info-container">
-                        <div class="user-list-item-info-image-container">
-                            <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
-                        </div>
-                        
-                        <div class="user-list-item-sub-info-container">
-                            <h3>Pera Peric</h3>
-                            <div class="user-list-item-sub-info-user-status-container">
-                                Pera is online
-                            </div>
-                        </div>
-                    </div>          
-                </li>
-
-                <li class="user-list-item">
-                    <div class="user-list-item-info-container">
-                        <div class="user-list-item-info-image-container">
-                            <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
-                        </div>
-                        
-                        <div class="user-list-item-sub-info-container">
-                            <h3>Pera Peric</h3>
-                            <div class="user-list-item-sub-info-user-status-container">
-                                Pera is online
-                            </div>
-                        </div>
-                    </div>          
-                </li>
-
-                <li class="user-list-item">
-                    <div class="user-list-item-info-container">
-                        <div class="user-list-item-info-image-container">
-                            <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
-                        </div>
-                        
-                        <div class="user-list-item-sub-info-container">
-                            <h3>Pera Peric</h3>
-                            <div class="user-list-item-sub-info-user-status-container">
-                                Pera is online
-                            </div>
-                        </div>
-                    </div>          
-                </li>
-
-                <li class="user-list-item">
-                    <div class="user-list-item-info-container">
-                        <div class="user-list-item-info-image-container">
-                            <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
-                        </div>
-                        
-                        <div class="user-list-item-sub-info-container">
-                            <h3>Pera Peric</h3>
-                            <div class="user-list-item-sub-info-user-status-container">
-                                Pera is online
-                            </div>
-                        </div>
-                    </div>          
-                </li>
-
-                <li class="user-list-item">
-                    <div class="user-list-item-info-container">
-                        <div class="user-list-item-info-image-container">
-                            <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
-                        </div>
-                        
-                        <div class="user-list-item-sub-info-container">
-                            <h3>Pera Peric</h3>
-                            <div class="user-list-item-sub-info-user-status-container">
-                                Pera is online
-                            </div>
-                        </div>
-                    </div>          
-                </li>
-
-                <li class="user-list-item">
-                    <div class="user-list-item-info-container">
-                        <div class="user-list-item-info-image-container">
-                            <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
-                        </div>
-                        
-                        <div class="user-list-item-sub-info-container">
-                            <h3>Pera Peric</h3>
-                            <div class="user-list-item-sub-info-user-status-container">
-                                Pera is online
-                            </div>
-                        </div>
-                    </div>          
-                </li>
-
-                <li class="user-list-item">
-                    <div class="user-list-item-info-container">
-                        <div class="user-list-item-info-image-container">
-                            <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
-                        </div>
-                        
-                        <div class="user-list-item-sub-info-container">
-                            <h3>Pera Peric</h3>
-                            <div class="user-list-item-sub-info-user-status-container">
-                                Pera is online
-                            </div>
-                        </div>
-                    </div>          
-                </li>
-
-                <li class="user-list-item">
-                    <div class="user-list-item-info-container">
-                        <div class="user-list-item-info-image-container">
-                            <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
-                        </div>
-                        
-                        <div class="user-list-item-sub-info-container">
-                            <h3>Pera Peric</h3>
-                            <div class="user-list-item-sub-info-user-status-container">
-                                Pera is online
-                            </div>
-                        </div>
-                    </div>          
-                </li>
-
-
-
-            </ul>
+            <ng-container *ngIf="selectedOption === menuOption[2]">
+                <ng-container [ngTemplateOutlet]="onlineUsersListTemplate"></ng-container>
+            </ng-container>
 
         </div>
 
     </div>
 
 </app-card>
+
+
+<!-- ----------------------------------------------------------- -->
+<!-- Template - All Users List -->
+<!-- ----------------------------------------------------------- -->
+<ng-template #allUserListTemplate>
+
+    <ul class="user-list">
+        
+        <li class="user-list-item" *ngFor="let user of allUsers">
+            <div class="user-list-item-info-container">
+                <div class="user-list-item-info-image-container">
+                    <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
+                </div>
+                
+                <div class="user-list-item-sub-info-container">
+                    <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+                    <div class="user-list-item-sub-info-user-status-container">
+                        {{ user.firstname }} is online
+                    </div>
+                </div>
+            </div>          
+        </li>        
+
+    </ul>    
+
+</ng-template>
+
+<!-- ----------------------------------------------------------- -->
+<!-- Template - Friend List -->
+<!-- ----------------------------------------------------------- -->
+<ng-template #friendListTemplate>
+
+    <ul class="user-list">
+        
+        <li class="user-list-item" *ngFor="let user of friendList">
+            <div class="user-list-item-info-container">
+                <div class="user-list-item-info-image-container">
+                    <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
+                </div>
+                
+                <div class="user-list-item-sub-info-container">
+                    <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+                    <div class="user-list-item-sub-info-user-status-container">
+                        {{ user.firstname }} is online
+                    </div>
+                </div>
+            </div>          
+        </li>        
+
+    </ul>    
+
+</ng-template>
+
+<!-- ----------------------------------------------------------- -->
+<!-- Template - Online Users List -->
+<!-- ----------------------------------------------------------- -->
+<ng-template #onlineUsersListTemplate>
+
+    <ul class="user-list">
+        
+        <li class="user-list-item" *ngFor="let user of onlineUsers">
+            <div class="user-list-item-info-container">
+                <div class="user-list-item-info-image-container">
+                    <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
+                </div>
+                
+                <div class="user-list-item-sub-info-container">
+                    <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+                    <div class="user-list-item-sub-info-user-status-container">
+                        {{ user.firstname }} is online
+                    </div>
+                </div>
+            </div>          
+        </li>        
+
+    </ul>    
+
+</ng-template>

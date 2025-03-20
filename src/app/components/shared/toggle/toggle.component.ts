@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-toggle',
@@ -16,6 +16,9 @@ export class ToggleComponent {
   @Input("activeItem")
   public activeItem: number = 0;
 
+  @Output("optionEmmiter")
+  optionEmmiter = new EventEmitter<number>();
+
   constructor() {
 
   }
@@ -24,6 +27,9 @@ export class ToggleComponent {
     
     this.activeItem = idx;
     
+    this.optionEmmiter.emit(idx);
+    
+
   }
 
 }
