@@ -76,7 +76,7 @@
                 <a href="#" class="sign-in-link" (click)="changeToSigninTemplate($event)">Don't have an accaount? Sign in</a>
             </div>
 
-            <button class="login-button" (click)="onLogin()">Login</button>
+            <button class="login-button" (click)="onLogin()" [disabled]="loginForm.invalid">Login</button>
 
         </form>
 
@@ -135,11 +135,15 @@
             </div>
 
             <div class="form-email-container">
-                <input type="text" formControlName="email" name="signin-email-value" id="signin-email-value" placeholder="Email" [ngStyle]="{marginBottom: signinForm.get('email')?.invalid && signinForm.get('email')?.touched ? '0px' : '10px'}" />
+                <input type="text" formControlName="email" name="signin-email-value" id="signin-email-value" (blur)="onSigninEmailBlur()" placeholder="Email" [ngStyle]="{marginBottom: signinForm.get('email')?.invalid && signinForm.get('email')?.touched ? '0px' : '10px'}" />
                 <div class="validation-alert" *ngIf="signinForm.get('email')?.invalid && signinForm.get('email')?.touched">
                     <span *ngIf="signinForm.get('email')?.getError('required')">*Email is required.</span>
                     <span *ngIf="signinForm.get('email')?.getError('email')">*Invalid email format.</span>
                     <span *ngIf="signinForm.get('email')?.getError('exist')">*This email address is already registered.</span>
+                </div>
+
+                <div class="validation-alert" *ngIf="signinForm.get('email')?.getError('exist') && responseEmailExist === true" style="margin-top: 0px;">
+                    *This email address is already registered.
                 </div>
             </div>
 
@@ -156,14 +160,14 @@
             </div>
 
             <div class="form-confirm-password-container" >
-                <input [type]="isSigninShowConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" name="signin-confirm-password-value" id="signin-confirm-password-value" placeholder="Confirm Password" [ngStyle]="{marginBottom: signinForm.get('confirmPassword')?.invalid && signinForm.get('confirmPassword')?.touched ? '0px' : '10px'}" />
+                <input [type]="isSigninShowConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" name="signin-confirm-password-value" (blur)="onConfigrmPasswordBlur()" id="signin-confirm-password-value" placeholder="Confirm Password" [ngStyle]="{marginBottom: signinForm.get('confirmPassword')?.invalid && signinForm.get('confirmPassword')?.touched ? '0px' : '10px'}" />
                 <button class="login-password-show-password-button" id="signin-confirm-password-button" (click)="signinShowConfirmPassword($event)">
                     <i class="fa-solid fa-eye login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowConfirmPassword === true"></i>
                     <i class="fa-solid fa-eye-slash login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowConfirmPassword === false"></i>
                 </button>
                 <div class="validation-alert" *ngIf="signinForm.get('confirmPassword')?.invalid && signinForm.get('confirmPassword')?.touched">
                     <span *ngIf="signinForm.get('confirmPassword')?.getError('required')">*Confirm Password is required.</span>
-                    <!-- Check if ConfirmPassword is same as Password -->
+                    <span *ngIf="signinForm.get('confirmPassword')?.getError('notSame')">*Passwords are not the same.</span>
                 </div>
                 <div class="validation-alert" id="confirm-password-validation-container">
                     *Passwords do not match.
@@ -178,7 +182,7 @@
                 <a href="#" class="sign-in-link" (click)="changeToSigninTemplate($event)">Already have an account? Login</a>
             </div>
 
-            <button class="login-button" (click)="onSignin($event)">Sign In</button>
+            <button class="login-button" (click)="onSignin($event)" [disabled]="signinForm.invalid">Sign In</button>
 
         </form>
 

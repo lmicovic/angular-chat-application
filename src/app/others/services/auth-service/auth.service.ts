@@ -51,6 +51,14 @@ export class AuthService {
     return this.httpClient.post<JwtTokenDTO>(this.authUrl + "/generateToken", authRequest);
   }
 
+  signin(user: UserDTO): Observable<UserDTO> {
+    return this.httpClient.post<UserDTO>(this.authUrl + "/signin", user);
+  }
+
+  emailExist(email: string): Observable<Boolean> {
+    return this.httpClient.get<boolean>(this.authUrl + "/email-exists/" + email);
+  }
+
   /**
    * Checks if User is loggedin. Checks JWT if JWT Token exists and if JWT Token is expired
    * @returns boolean

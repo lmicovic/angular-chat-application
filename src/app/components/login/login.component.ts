@@ -1,14 +1,11 @@
-import { every } from 'rxjs';
 import { Component, HostListener } from '@angular/core';
 import { CardComponent } from "../shared/card/card.component";
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { EmailValidators } from '../../others/validators/email.validator';
 import { AuthRequest } from '../../others/models/authRequest.class';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../others/services/auth-service/auth.service';
-import { DecodedJwtToken } from '../../others/models/decodedJwtToken.interface';
 import { UserService } from '../../others/services/user-service/user.service';
 import { UserDTO } from '../../others/models/userDto.class';
 
@@ -28,11 +25,11 @@ export class LoginComponent {
   });
 
   signinForm: FormGroup = new FormGroup({
-    firstname: new FormControl("", [Validators.required]),
-    lastname: new FormControl("", [Validators.required]),
-    email: new FormControl("", [Validators.required, Validators.email], [EmailValidators.exists]),
-    password: new FormControl("", [Validators.required, Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}")]),
-    confirmPassword: new FormControl("", [Validators.required, Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}")]),
+    firstname: new FormControl("Pera", [Validators.required]),
+    lastname: new FormControl("Peric", [Validators.required]),
+    email: new FormControl("pera.peric@gmail.com", [Validators.required, Validators.email]),
+    password: new FormControl("Test!123!", [Validators.required, Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}")]),
+    confirmPassword: new FormControl("Test!123!", [Validators.required, Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}")]),
   });
 
   cardStyle = {
@@ -96,19 +93,13 @@ export class LoginComponent {
         console.log("Logged User: " + JSON.stringify(user));
 
         this.authService.saveLoggedUser(user);
+      
+        // Redirect to Home Page
         this.router.navigate(["/home"]);
         
-
       }, (error) => {
         console.log(error);
       });
-
-      // Redirect to Home Page
-      // this.router.navigate(["/home"]);
-
-      
-      
-
 
     }, (error: HttpErrorResponse) => {
       
@@ -124,11 +115,13 @@ export class LoginComponent {
       
     });
     
-    
   }
 
+  responseEmailExist: boolean = false;
   onSignin(event: MouseEvent) {
     event.preventDefault();
+
+    this.responseEmailExist = false;
 
     // Check Form Validation
     if(this.signinForm.status === "INVALID") {
@@ -152,7 +145,46 @@ export class LoginComponent {
       confirmPasswordValidationContainer!.style.display = "none";
     }
     
+    const firstname = this.signinForm.get("firstname")?.value;
+    const lastname = this.signinForm.get("lastname")?.value;
+    const email = this.signinForm.get("email")?.value;
+    const pwd = password.value;
+
+    const userDto = new UserDTO(-1, firstname, lastname, email, pwd);
     
+    this.authService.signin(userDto).subscribe((response: UserDTO) => {
+
+      // Save user
+      this.authService.saveLoggedUser(response);
+
+      // Get JWT Token
+      const email = response.email;
+      const password = this.signinForm.get("password")?.value as string;
+      const authRequest = new AuthRequest(email, password);
+
+      this.authService.authenticate(authRequest).subscribe((response) => {
+
+        console.log("jwtToken: " + response.jwtToken);
+
+        // Save JWT Token
+        this.authService.saveJwtToken(response.jwtToken);
+        
+        // Redirecto to Home Page
+        this.router.navigate(["/home"]);
+
+      }, (error) => {
+        console.error(error);
+      });
+
+    }, (error: HttpErrorResponse) => {
+      // HTTPStatus.Conflict - email is in use.
+      if(error.status === 409) {
+        this.responseEmailExist = true;
+        this.signinForm.get("email")?.setErrors({exist: true});
+      }
+      console.error(error);
+    });
+
   }
 
   onGoogleLoginButton() {
@@ -184,6 +216,50 @@ export class LoginComponent {
   signinShowConfirmPassword(event: MouseEvent) {
     event.preventDefault();
     this.isSigninShowConfirmPassword = !this.isSigninShowConfirmPassword;
+  }
+
+  /**
+   * Check If email is unique when focus is removed from emial input field in signin form
+   */
+  onSigninEmailBlur() {
+
+    this.responseEmailExist = false;
+
+    const email: string = this.signinForm.get("email")?.value as string;
+
+    // If email is not typed
+    if(email.length <= 0) {
+      return;
+    }
+
+    // Check if email already exist
+    this.authService.emailExist(email).subscribe((response) => {
+      if(response === true) {
+        this.signinForm.get("email")?.setErrors({exist: true});
+      }
+      
+    }, (error) => {
+      console.error(error);
+    });
+    
+  }
+
+  /**
+   * Check if Password and confirmPassword is the same
+   */
+  onConfigrmPasswordBlur() {
+
+    const password = this.signinForm.get("password")?.value as string;
+    const confirmPassword = this.signinForm.get("confirmPassword")?.value as string;
+
+    if(password.length <= 0 || confirmPassword.length <= 0) {
+      return;
+    }
+
+    if(password !== confirmPassword) {
+      this.signinForm.get("confirmPassword")?.setErrors({notSame: true});
+    }
+
   }
 
 }
