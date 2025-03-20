@@ -68,6 +68,10 @@
                 <span>*Please fill in all required fields.</span>
             </div>
 
+            <div class="validation-alert" *ngIf="loginForm.getError('wrongEmailOrPassword')">
+                <span>*Wrong email or password</span>
+            </div>
+
             <div class="sign-in-container">
                 <a href="#" class="sign-in-link" (click)="changeToSigninTemplate($event)">Don't have an accaount? Sign in</a>
             </div>
