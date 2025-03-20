@@ -1,27 +1,70 @@
-# AngularChatApplication
+# Real-Time Private Chat Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
+This is a real-time private one-to-one chat application built using [HTML](https://www.w3schools.com/html/ "HTML"), [CSS](https://www.w3schools.com/css/ "CSS"), [TypeScript](https://www.typescriptlang.org/ "TypeScript") and  [Angular17](https://angular.dev/ "Angular") framework. The application allows users to communicate securely and efficiently, providing a seamless chat experience.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies](#technologies)
+- [How to Run](#how-to-run)
 
-## Code scaffolding
+## Overview
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The Real-Time Private Chat Application is designed to facilitate secure and private conversations between users. With a focus on user experience and performance, this application leverages modern web technologies to deliver a robust messaging platform.
 
-## Build
+### Backend Application
+Backend Application for this application is at following repository: https://github.com/lmicovic/spring-chat-application
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Features
 
-## Running unit tests
+- **Private User-to-User Chat**: Engage in direct conversations with other users.
+- **Message Persistence**: Users can access their message history even after logging out.
+- **User Authentication**: Secure login using [JWT tokens](https://en.wikipedia.org/wiki/JSON_Web_Token "JWT tokens") and [OAuth2](https://developers.google.com/identity/protocols/oauth2 "OAuth2") for Google authentication.
+- **Online User Status**: See which users are currently online to enhance interaction.
+- **User Management**: Block users and add them to a friend list.
+- **Typing Indicator**: Real-time typing indicator to enhance user interaction.
+- **Media Sharing**: Send images and files as messages.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Technologies
 
-## Running end-to-end tests
+- **Frontend**: [HTML](https://www.w3schools.com/html/ "HTML"), [CSS](https://www.w3schools.com/css/ "CSS"), [TypeScript](https://www.typescriptlang.org/ "TypeScript") and  [Angular17](https://angular.dev/ "Angular")
+- **IDE**: [Visual Studio Code](https://code.visualstudio.com/ "Visual Studio Code")
+- **Authentication**: [JWT Token](https://en.wikipedia.org/wiki/JSON_Web_Token "JWT Token"), [OAuth2](https://developers.google.com/identity/protocols/oauth2 "OAuth2") (Google)
+- **Real-time Communication:** [WebSocket](https://en.wikipedia.org/wiki/WebSocket#:~:text=WebSocket%20is%20a%20computer%20communications,as%20RFC%206455%20in%202011. "WebSocket")
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## How to run
+1. Clone project from Github repository by typing following command in terminal:
+`git clone https://github.com/lmicovic/angular-chat-application`
 
-## Further help
+2. Install Node.js:
+	- Install Node.js from: https://nodejs.org/en/download
+	- Check node.js version by typing following command in terminal:<br>
+	`node -v`
+	- Check npm(Node Package Manager) version by typing following command in terminal:<br>
+	`npm -v`
+	
+3. Install Angular17 version on your computer by typing following command in terminal:<br>
+`npm install -g @angular/cli@17.0.0`
+	- Check Angular version by typing following in terminal:<br>
+`ng version`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. Install all Angular dependencies:
+	- Open Termnal and locate to project root directory:<br>
+`cd D:\Downloads\projectName`
+	- Install all Angular dependencies by typing following command in terminal:<br>
+`npm install --legacy-peer-deps`
+
+5. Run Angular Application:
+	- Open Termnal and locate to project root directory:<br>
+`cd D:\Downloads\projectName`
+	- In terminal type following command to start Angular application:<br>
+`ng serve`
+	- Application will be up and running on URL: http://localhost:4200/
+	
+<br>
+
+------------
+
+## Contributions
+Other contributions are welcome! Feel free to open issues, submit pull requests, or suggest improvements.
