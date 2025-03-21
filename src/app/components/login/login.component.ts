@@ -94,9 +94,6 @@ export class LoginComponent {
 
         this.authService.saveLoggedUser(user);
       
-        console.log(user.friendList);
-        
-
         // Redirect to Home Page
         this.router.navigate(["/home"]);
         

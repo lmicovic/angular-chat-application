@@ -45,7 +45,11 @@ export class UserListComponent implements OnInit {
 
     this.userService.getAll().subscribe((response) => {
       this.allUsers = this.filterCurrentUser(response);
-      this.onlineUsers = this.filterOnlineUsers(response);      
+      this.onlineUsers = this.filterOnlineUsers(response); 
+      if(this.loggedUser?.friendList !== undefined) {
+        this.friendList = this.loggedUser?.friendList; 
+      }   
+      
     }, (error) => {
       console.error(error);
     });
