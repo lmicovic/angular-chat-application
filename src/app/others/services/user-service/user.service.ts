@@ -69,6 +69,34 @@ export class UserService extends CrudServiceImpl<UserDTO> {
     return this.httpClient.get<UserDTO>(this.urlApi + "/" + this.path + "/email/" + email);
   }
 
+  getCurrentLoggedinUser(email: string) {
+
+    if(this.secure === true) {
+
+      const jwtToken = this.authService.getJwtToken();
+      if(jwtToken === null) {
+          try {
+              throw new Error("JwtToken is not found in localStorage.");
+          } catch (error) {
+              console.error(error);
+          }
+      }
+
+      let headers = new HttpHeaders({
+          "Authorization": "Bearer " + jwtToken,
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+      });
+
+      return this.httpClient.get<UserDTO>(this.urlApi + "/" + this.path + "/current-user/" + email, {headers: headers});  
+
+    }
+
+    return this.httpClient.get<UserDTO>(this.urlApi + "/" + this.path + "/current-user/" + email);
+
+  }
+
+
   /**
    * @deprecated This method is not longer in use, use saveUser() or saveAdmin() method instead.
    * @param object 

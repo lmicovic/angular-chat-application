@@ -88,7 +88,7 @@ export class LoginComponent {
       const decodedJwtToken = this.authService.decodeJwtToken(response);
       const userEmail = decodedJwtToken?.sub;
 
-      this.userService.findByEmail(userEmail as string).subscribe((user: UserDTO) => {
+      this.userService.getCurrentLoggedinUser(userEmail as string).subscribe((user: UserDTO) => {
 
         console.log("Logged User: " + JSON.stringify(user));
 
@@ -150,7 +150,7 @@ export class LoginComponent {
     const email = this.signinForm.get("email")?.value;
     const pwd = password.value;
 
-    const userDto = new UserDTO(-1, firstname, lastname, email, pwd);
+    const userDto = new UserDTO(-1, firstname, lastname, email, pwd, [{authority: "ROLE_USER"}], true, new Date());
     
     this.authService.signin(userDto).subscribe((response: UserDTO) => {
 

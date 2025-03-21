@@ -26,10 +26,10 @@ export class ToggleComponent {
   public onItem(idx: number): void {
     
     this.activeItem = idx;
-    
     this.optionEmmiter.emit(idx);
     
-
   }
+
+  
 
 }
