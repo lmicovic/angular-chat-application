@@ -94,6 +94,9 @@ export class LoginComponent {
 
         this.authService.saveLoggedUser(user);
       
+        console.log(user.friendList);
+        
+
         // Redirect to Home Page
         this.router.navigate(["/home"]);
         
@@ -150,7 +153,7 @@ export class LoginComponent {
     const email = this.signinForm.get("email")?.value;
     const pwd = password.value;
 
-    const userDto = new UserDTO(-1, firstname, lastname, email, pwd, [{authority: "ROLE_USER"}], true, new Date());
+    const userDto = new UserDTO(-1, firstname, lastname, email, pwd, [], [{authority: "ROLE_USER"}], true, new Date());
     
     this.authService.signin(userDto).subscribe((response: UserDTO) => {
 
