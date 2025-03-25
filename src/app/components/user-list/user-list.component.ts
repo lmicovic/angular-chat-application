@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CardComponent } from "../shared/card/card.component";
 import { SearchBarComponent } from "../shared/search-bar/search-bar.component";
 import { ToggleComponent } from "../shared/toggle/toggle.component";
@@ -6,6 +6,7 @@ import { UserDTO } from '../../others/models/userDto.class';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../others/services/user-service/user.service';
 import { AuthService } from '../../others/services/auth-service/auth.service';
+import { timeInterval } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -29,6 +30,8 @@ export class UserListComponent implements OnInit {
   menuOption: string[] = ["all", "friendList", "online"];
   selectedOption: string = this.menuOption[1];
 
+  
+
   constructor(private userService: UserService, private authService: AuthService) {
 
   }
@@ -38,6 +41,8 @@ export class UserListComponent implements OnInit {
     this.getAllUsers();
   }
 
+  
+
   /**
    * Get All Users from Backend
    */
@@ -45,9 +50,12 @@ export class UserListComponent implements OnInit {
 
     this.userService.getAll().subscribe((response) => {
       this.allUsers = this.filterCurrentUser(response);
-      this.onlineUsers = this.filterOnlineUsers(response); 
+      this.allUsersFiltered = this.allUsers;
+      this.onlineUsers = this.filterOnlineUsers(response);
+      this.onlineUsersFiltered = this.onlineUsers;
       if(this.loggedUser?.friendList !== undefined) {
         this.friendList = this.loggedUser?.friendList; 
+        this.friendListFiltered = this.loggedUser?.friendList;
       }   
       
     }, (error) => {
@@ -100,6 +108,57 @@ export class UserListComponent implements OnInit {
 
   getSelectedOption(selectedOption: number) {
     this.selectedOption = this.menuOption[selectedOption];
+  }
+
+  resultValue: string = "";
+  allUsersFiltered: UserDTO[] = [];
+  friendListFiltered: UserDTO[] = [];
+  onlineUsersFiltered: UserDTO[] = [];
+  onSearchResult(value: string) {
+    
+    this.resultValue = value.toLocaleLowerCase();
+    
+    switch (this.selectedOption) {
+      case "all":
+        this.allUsersFiltered = this.allUsers.filter((value) => {
+          let filterString = (value.firstname + " " + value.lastname).toLocaleLowerCase();
+          if(filterString.includes(this.resultValue) === true) {
+            return true;
+          }
+          return false;
+        });
+        break;
+
+      case "friendList":
+        this.friendListFiltered = this.friendList.filter((value) => {
+          let filterString = (value.firstname + " " + value.lastname).toLocaleLowerCase();
+          if(filterString.includes(this.resultValue) === true) {
+            return true;
+          }
+          return false;
+        });
+        break  
+      break;
+
+      case "online":
+        this.onlineUsersFiltered = this.onlineUsers.filter((value) => {
+          let filterString = (value.firstname + " " + value.lastname).toLocaleLowerCase();
+          if(filterString.includes(this.resultValue) === true) {
+            return true;
+          }
+          return false;
+        });
+        break
+      
+      default:
+        try {
+          throw new Error("Wrong Selected Menu Option: " + this.selectedOption + ". Options can be: [all, friendList, online]")
+        } catch (error) {
+          console.error(error);
+        }
+        break;
+    }
+    
   }
 
 }

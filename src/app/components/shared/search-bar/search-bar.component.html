@@ -1,6 +1,6 @@
 <div class="main-container" [ngStyle]="styles">
 
-    <input type="text" name="search-user" id="search-user" placeholder="Search..." autocomplete="off" />
+    <input type="text" name="search-user" id="search-user" placeholder="Search..." autocomplete="off" (input)="onSearch()" />
     <i class="fas fa-search search-icon"></i>
 
 </div>

@@ -12,4 +12,36 @@ import { TextInputComponent } from "../shared/text-input/text-input.component";
 })
 export class MessagesComponent {
 
+  constructor() {
+
+  }
+
+  onViewUserProfile(event: MouseEvent) {
+    event.preventDefault();
+    alert("This feature is not supported yet!");
+  }
+
+  onAddToFriendList(event: MouseEvent) {
+    event.preventDefault();
+    alert("This feature is not supported yet!");
+  }
+
+  onAddToGroup(event: MouseEvent) {
+    event.preventDefault();
+    alert("This feature is not supported yet!");
+  }
+
+  onBlock(event: MouseEvent) {
+    event.preventDefault();
+    alert("This feature is not supported yet!");
+  }
+
+  onVideoCall(event: MouseEvent) {
+    alert("This feature is not supported yet!");
+  }
+
+  onVoiceCall(event: MouseEvent) {
+    alert("This feature is not supported yet!");
+  }
+
 }

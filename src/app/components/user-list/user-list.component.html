@@ -1,7 +1,7 @@
 <app-card [styles]="{height: '100%', marginRight: '10px'}">
 
     <div class="card-content">
-        <app-search-bar [styles]="{padding: '15px'}"></app-search-bar>
+        <app-search-bar (searchResult)="onSearchResult($event)" [styles]="{padding: '15px'}"></app-search-bar>
 
         <app-toggle [items]="['All', 'Friend List', 'Online']" [activeItem]="1" (optionEmmiter)="getSelectedOption($event)"></app-toggle>
 
@@ -35,7 +35,7 @@
 
     <ul class="user-list">
         
-        <li class="user-list-item" *ngFor="let user of allUsers">
+        <li class="user-list-item" *ngFor="let user of allUsersFiltered">
             <div class="user-list-item-info-container">
                 <div class="user-list-item-info-image-container">
                     <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
@@ -61,7 +61,7 @@
 
     <ul class="user-list">
         
-        <li class="user-list-item" *ngFor="let user of friendList">
+        <li class="user-list-item" *ngFor="let user of friendListFiltered">
             <div class="user-list-item-info-container">
                 <div class="user-list-item-info-image-container">
                     <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
@@ -87,7 +87,7 @@
 
     <ul class="user-list">
         
-        <li class="user-list-item" *ngFor="let user of onlineUsers">
+        <li class="user-list-item" *ngFor="let user of onlineUsersFiltered">
             <div class="user-list-item-info-container">
                 <div class="user-list-item-info-image-container">
                     <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />

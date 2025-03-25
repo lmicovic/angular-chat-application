@@ -20,29 +20,21 @@
                 </div>
 
                 <div class="icon-container">
-                    <i class="fa-solid fa-video icon video-icon" title="Video call"></i>
-                    <i class="fa-solid fa-phone icon phone-icon" title="Voice call"></i>
+                    <i class="fa-solid fa-video icon video-icon" title="Video call" (click)="onVideoCall($event)"></i>
+                    <i class="fa-solid fa-phone icon phone-icon" title="Voice call" (click)="onVoiceCall($event)"></i>
                 </div>
 
             </div>
 
             <div class="user-message-option-container">
-                
-                <!-- <div class="drop-down">
-                    
-                    <div class="drop-down-button-container">
-                        <button class="drop-down-button"><i class="fa-solid fa-ellipsis-vertical menu-icon"></i></button>
-                    </div>
-
-                </div> -->
 
                 <div class="dropdown">
                     <button class="dropbtn"><i class="fa-solid fa-ellipsis-vertical menu-icon"></i></button>
                     <div class="dropdown-content">
-                      <a href="#" class="dropdown-item"><i class="fa-solid fa-user"></i>View profile</a>
-                      <a href="#" class="dropdown-item"><i class="fa-solid fa-people-group"></i>Add to friend list</a>
-                      <a href="#" class="dropdown-item"><i class="fa-solid fa-plus"></i> Add to group</a>
-                      <a href="#" class="dropdown-item"><i class="fa-regular fa-circle-xmark"></i> Block</a>
+                      <a href="" class="dropdown-item" (click)="onViewUserProfile($event)"><i class="fa-solid fa-user"></i>View profile</a>
+                      <a href="" class="dropdown-item" (click)="onAddToFriendList($event)"><i class="fa-solid fa-people-group"></i>Add to friend list</a>
+                      <a href="" class="dropdown-item" (click)="onAddToGroup($event)"><i class="fa-solid fa-plus"></i> Add to group</a>
+                      <a href="" class="dropdown-item" (click)="onBlock($event)"><i class="fa-regular fa-circle-xmark"></i> Block</a>
                     </div>
                 </div>
                 

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CardComponent } from "../shared/card/card.component";
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-application-header',
   standalone: true,
-  imports: [CardComponent],
+  imports: [RouterModule, CardComponent],
   templateUrl: './application-header.component.html',
   styleUrl: './application-header.component.css'
 })
