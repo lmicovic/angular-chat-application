@@ -188,7 +188,7 @@ export class UserService extends CrudServiceImpl<UserDTO> {
     
     if(this.secure === true) {
 
-        const jwtToken = this.authService.getJwtToken();
+      const jwtToken = this.authService.getJwtToken();
       if(jwtToken === null) {
           try {
               throw new Error("JwtToken is not found in localStorage.");

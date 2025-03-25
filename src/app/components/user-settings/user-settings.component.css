@@ -1,0 +1,128 @@
+.main-container {
+    width: 50%;
+    height: auto;
+    margin: 5% auto;
+}
+
+.card-content {
+    padding: 40px 30px 45px 30px;
+}
+
+.settinhgs-title {
+    color: #F9F6EE;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.user-image-container {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.user-image {
+    width: 200px;
+    height: auto;
+    border-radius: 100%;
+    
+}
+
+.user-image:hover {
+    cursor: pointer;
+}
+
+.user-image:active {
+    opacity: 0.8;
+}
+
+.form-container {
+    text-align: center;
+}
+
+.form-profile-image-container {
+    margin-bottom: 20px;
+}
+
+.change-password-button-container {
+    
+}
+
+.change-password-button, .change-profile-image-button {
+    width: 178px;
+    height: 30px;
+    background-color: rgba(0,0,0,0.12);
+    outline: none;
+    height: 30px;
+    border: 1px solid rgba(0,0,0, 0.5);
+    padding: 3px 7px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    color: #F9F6EE;
+}
+
+.change-password-button:hover, .change-profile-image-button:hover {
+    cursor: pointer;
+}
+
+.change-password-button:active {
+    opacity: 0.7;
+}
+
+.form-password-container {
+    
+}
+
+.save-button-container {
+    margin-top: 25px;
+}
+
+.save-button, .cancel-button {
+    width: 85px;
+    height: 25px;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+}
+
+.save-button:hover, .cancel-button:hover {
+    cursor: pointer;
+}
+
+.save-button:active, .cancel-button:active {
+    opacity: 0.8;
+}
+
+.save-button {
+    margin-right: 10px;
+    background-color: #AAFF00;
+}
+
+.validation-alert {
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #FFC107;
+}
+
+.logout-container {
+    text-align: center;
+    margin: 50px 0px 0px 0px;
+}
+
+.logout-button {
+    width: 177px;
+    height: 30px;
+    background-color: rgba(0,0,0,0.12);
+    border: 1px solid rgba(0,0,0, 0.5);
+    border-radius: 6px;
+    color: #F9F6EE;
+}
+
+.logout-button:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.logout-button:active {
+    background-color: rgba(0,0,0,0.2);
+}

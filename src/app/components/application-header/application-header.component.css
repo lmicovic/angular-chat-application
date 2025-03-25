@@ -2,6 +2,16 @@
     
 }
 
+.card-content {
+    position: relative;
+}
+
+/* .card-content::after {
+    content: "";
+    display: table;
+    clear: both;
+} */
+
 .logo-container {
     padding: 15px;
     margin-left: 5px;
@@ -17,4 +27,30 @@
 
 .logo-container img:hover {
     cursor: pointer;
+}
+
+.settings-container {
+    position: absolute;
+    right: 30px;
+    top: 30%;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+.settings-container:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+.settings-container:hover .settings-icon {
+    color: #989898;
+}
+
+.settings-container:active .settings-icon {
+    color: #7a7a7a;
+}
+
+.settings-icon {
+    font-size: 22px;
+    color: #2d2f30;
 }

@@ -1,0 +1,85 @@
+<div class="main-container">
+
+    <app-card>
+
+        <div class="card-content">
+
+            <h2 class="settinhgs-title">Profile Settings</h2>
+
+            <div class="user-image-container">
+                <img src="../../../assets/images/user-profil-image.png" class="user-image" alt="User profile image" />
+            </div>
+
+            <div class="form-container">
+
+                <form [formGroup]="settingsForm">
+                    
+                    <div class="form-profile-image-container">
+                        <button class="change-profile-image-button" (click)="onChangeImage($event)">Change Image</button>
+                    </div>
+
+                    <div class="form-firstname-container">
+                        <input type="text" name="firstname" id="firstname" formControlName="firstname" placeholder="Firstname" [value]="loggedUser?.firstname" [ngStyle]="{marginBottom: settingsForm.get('firstname')?.invalid && settingsForm.get('firstname')?.touched ? '0px' : '10px'}" />
+                        <div class="validation-alert" *ngIf="settingsForm.get('firstname')?.invalid && settingsForm.get('firstname')?.touched">
+                            <span *ngIf="settingsForm.get('firstname')?.getError('required')">*Firstname is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-lastname-container">
+                        <input type="text" name="lastname" id="lastname" formControlName="lastname" placeholder="Lastname" [ngStyle]="{marginBottom: settingsForm.get('lastname')?.invalid && settingsForm.get('lastname')?.touched ? '0px' : '10px'}"/>
+                        <div class="validation-alert" *ngIf="settingsForm.get('lastname')?.invalid && settingsForm.get('lastname')?.touched">
+                            <span *ngIf="settingsForm.get('lastname')?.getError('required')">*Lastname is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-email-container">
+                        <input type="text" name="email" id="email" formControlName="email" placeholder="E-mail" (blur)="onEmailBlur()" [ngStyle]="{marginBottom: settingsForm.get('email')?.invalid ? '0px' : '10px'}" />
+                        <div class="validation-alert" *ngIf="settingsForm.get('email')?.invalid && settingsForm.get('email')?.touched">
+                            <span *ngIf="settingsForm.get('email')?.getError('required')">*Email is required.</span>
+                            <span *ngIf="settingsForm.get('email')?.getError('email')">*Invalid email format.</span>
+                        </div>
+                        <div class="validation-alert" *ngIf="settingsForm.get('email')?.getError('emailExist')">
+                            <span>*This email address is already registered.</span>
+                        </div>
+                    </div>
+
+                    <div class="change-password-button-container" (click)="onChangePassword($event)" [ngStyle]="{'display': showChangePasswordInput === false ? 'block' : 'none'}">
+                        <button class="change-password-button">Change Password</button>
+                    </div>
+
+                    <div class="form-password-container" [ngStyle]="{'display': showChangePasswordInput === false ? 'none' : 'block'}">
+                        <input type="text" name="password" id="password" formControlName="password" placeholder="Password" autocomplete="off" [ngStyle]="{marginBottom: settingsForm.get('password')?.invalid && settingsForm.get('password')?.touched ? '0px' : '10px'}" />
+                        <div class="validation-alert" *ngIf="settingsForm.get('password')?.invalid && settingsForm.get('password')?.touched">
+                            <span *ngIf="settingsForm.get('password')?.getError('required')">*Password is required.</span>
+                            <span *ngIf="settingsForm.get('password')?.getError('pattern')">*Invalid passowrd format.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-confirm-password-container" [ngStyle]="{'display': showChangePasswordInput === false ? 'none' : 'block'}">
+                        <input type="text" name="confirm-password" id="confirm-password" placeholder="Confirm Password" autocomplete="off" (blur)="onConfirmPasswordBlur()" [ngStyle]="{marginBottom: settingsForm.get('password')?.invalid || confirmPassword === true ? '0px' : '10px'}" />
+                        <div class="validation-alert" *ngIf="settingsForm.get('password')?.invalid && settingsForm.get('password')?.getError('notSame')">
+                            *Passwords do not match.
+                        </div>
+                        <div class="validation-alert" *ngIf="confirmPassword === true">
+                            *Please confirm password.
+                        </div>
+                    </div>
+
+                    <div class="save-button-container">
+                        <button class="save-button" (click)="onSave($event)">Save</button>
+                        <button class="cancel-button" (click)="onCancel($event)">Cancel</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="logout-container">
+                <button class="logout-button" (click)="onLogout()">Logout</button>
+            </div>
+
+        </div>
+
+    </app-card>
+
+</div>

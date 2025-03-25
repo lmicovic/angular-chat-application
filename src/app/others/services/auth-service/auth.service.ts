@@ -6,6 +6,8 @@ import { JwtTokenDTO } from '../../models/jwtTokenDTO.class';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { DecodedJwtToken } from '../../models/decodedJwtToken.interface';
 import { UserDTO } from '../../models/userDto.class';
+import { Router } from '@angular/router';
+import { UserService } from '../user-service/user.service';
 
 
 
@@ -21,7 +23,7 @@ export class AuthService {
   private readonly jwtTokenKey: string = "jwtToken";
   private readonly loggedUserKey: string = "loggedUser";
 
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient, private router: Router) { 
     this.getWelcome();
   }
 
@@ -83,9 +85,52 @@ export class AuthService {
   /**
    * Logout current user by removing its JWT Token from localStorage.
    */
-  logout() {
-    this.removeJwtToken();
-    this.removeLoggedUser();
+  logout(redirect: boolean = true) {
+  
+    // Send message to Server that user is no logner online
+    const loggedUser = this.getLoggedUser();
+    if(loggedUser === null) {
+      try {
+        throw new Error("No Logged User in localStorage.");
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    const jwtToken = this.getJwtToken();
+    if(jwtToken === null) {
+        try {
+            throw new Error("JwtToken is not found in localStorage.");
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    let headers = new HttpHeaders({
+        "Authorization": "Bearer " + jwtToken,
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    });
+
+
+    this.httpClient.put<HttpResponse<String>>("http://localhost:8080/auth/logout", loggedUser, {headers: headers}).subscribe((response) => {
+
+      // HTTPStatus.OK
+      if(response.status === 200) {
+        this.removeJwtToken();        // Remove JWT Token from localStorage
+        this.removeLoggedUser();      // Remove Logged User from localStroge
+
+        // Redirect to loginPage if needed
+        if(redirect === true) {
+          this.router.navigate(["/login"]);
+        }
+
+      }
+
+    }, (error) => {
+      console.error(error);
+    });
+
   }
 
   /**

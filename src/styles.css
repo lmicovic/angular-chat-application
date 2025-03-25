@@ -14,6 +14,23 @@ body {
     background: linear-gradient(to right, #00308F, #AFE1AF);
 }
 
+form input {
+    background-color: rgba(0,0,0,0.12);
+    outline: none;
+    height: 30px;
+    border: 1px solid rgba(0,0,0, 0.5);
+    padding: 3px 7px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    color: #F9F6EE;
+}
+
+form input:focus {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+    border: 1px solid black;
+    background-color: rgba(0,0,0,0.08);
+}
+
 ::-webkit-scrollbar {
     width: 8px; /* Width of the scrollbar */
     height: 8px; /* Height of the scrollbar */
