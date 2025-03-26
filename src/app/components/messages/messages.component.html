@@ -1,21 +1,21 @@
 <app-card [styles]="{height: '500px'}">
-
+    
     <div class="card-content">
         
-        <div class="message-header-container">
+        <div class="message-header-container" *ngIf="selectedUser !== null">
             
             <div class="message-header-message-user-info-container">
 
                 <div class="user-image-profile-container">
-                    <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
+                    <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" [title]="selectedUser.firstname + ' ' + selectedUser.lastname" />
                 </div>
 
                 <div class="user-message-profile-information-container">
                     <div class="user-message-profile-information-user-name">
-                        Chat with Pera
+                        Chat with {{selectedUser.firstname}}
                     </div>
                     <div class="user-message-profile-information-message-number">
-                        1254 Messages
+                        {{ selectedUserMessages?.length }} Messages
                     </div>
                 </div>
 
@@ -44,18 +44,24 @@
         </div>
 
 
-        <div class="message-box-container">
+        <div class="message-box-container" *ngIf="selectedUser !== null">
             
             <div class="message-box-container">
-                <app-message-box></app-message-box>
+                <app-message-box [selectedUser]="selectedUser" (selectedUserMessages)="onSelectedUserMessages($event)"></app-message-box>
             </div>
             
             <div class="text-input-container">
                 <app-text-input></app-text-input>
             </div>
 
-            
+        </div>
 
+        <!-- ---------------------------------------------------------------------------- -->
+        <!-- User not Selected -  If Not Selected User from User Menu -->
+        <!-- ---------------------------------------------------------------------------- -->
+        <div class="user-not-selected-container" *ngIf="selectedUser === null">
+            <h3 class="user-not-selected-title">Select user from the list to start chat</h3>
+            <i class="fa-solid fa-arrow-left arrow-left-icon"></i>
         </div>
 
 

@@ -4,6 +4,21 @@
     height: 340px;
 }
 
+.no-messages-container {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.no-messages-header {
+    font-size: 16px;
+    font-weight: 500;
+    color: #9a9da1;
+}
+
+.no-messages-sub-header {
+    margin-top: 6px;
+}
+
 .message-container {
     display: flex;
     /* background-color: red; */
@@ -19,6 +34,10 @@
 .message-image-container {
     /* float: left; */
     /* background-color: blue; */
+}
+
+.message-image-container:hover {
+    cursor: pointer;
 }
 
 .message-image {

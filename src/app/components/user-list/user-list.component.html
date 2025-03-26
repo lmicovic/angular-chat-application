@@ -36,7 +36,7 @@
     <ul class="user-list">
         
         <li class="user-list-item" *ngFor="let user of allUsersFiltered">
-            <div class="user-list-item-info-container">
+            <div class="user-list-item-info-container" (click)="onUser($event, user)">
                 <div class="user-list-item-info-image-container">
                     <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
                 </div>
@@ -62,7 +62,7 @@
     <ul class="user-list">
         
         <li class="user-list-item" *ngFor="let user of friendListFiltered">
-            <div class="user-list-item-info-container">
+            <div class="user-list-item-info-container" (click)="onUser($event, user)">
                 <div class="user-list-item-info-image-container">
                     <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
                 </div>
@@ -88,7 +88,7 @@
     <ul class="user-list">
         
         <li class="user-list-item" *ngFor="let user of onlineUsersFiltered">
-            <div class="user-list-item-info-container">
+            <div class="user-list-item-info-container" (click)="onUser($event, user)">
                 <div class="user-list-item-info-image-container">
                     <img src="../../../assets/images/user-profil-image.png" class="user-profile-image" alt="user profile image" />
                 </div>

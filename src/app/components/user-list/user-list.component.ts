@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { UserService } from '../../others/services/user-service/user.service';
 import { AuthService } from '../../others/services/auth-service/auth.service';
 import { timeInterval } from 'rxjs';
+import { SelectedUserService } from '../../others/services/shared-service/selected-user-service/selected-user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -30,9 +31,9 @@ export class UserListComponent implements OnInit {
   menuOption: string[] = ["all", "friendList", "online"];
   selectedOption: string = this.menuOption[1];
 
-  
+  selectedUser: UserDTO | null = null;
 
-  constructor(private userService: UserService, private authService: AuthService) {
+  constructor(private userService: UserService, private authService: AuthService, private selectedUserService: SelectedUserService) {
 
   }
 
@@ -158,6 +159,18 @@ export class UserListComponent implements OnInit {
         }
         break;
     }
+    
+  }
+
+  /**
+   * Saves selected User from User Menu.
+   * @param event - MouseEvent
+   * @param user UserDTO - Selected User
+   */
+  onUser(event: MouseEvent, user: UserDTO) {
+    
+    this.selectedUser = user;
+    this.selectedUserService.changeData(this.selectedUser);
     
   }
 

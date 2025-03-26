@@ -14,9 +14,7 @@
 
 }
 
-.user-image-profile-container {
 
-}
 
 .user-image-profile-container {
     position: absolute;
@@ -24,6 +22,10 @@
     left: 45px;
     transform: translate(-50%, -50%); /* Adjust to center */
 
+}
+
+.user-image-profile-container:hover {
+    cursor: pointer;
 }
 
 .user-image-profile-container img {
@@ -156,4 +158,21 @@
     /* background-color: green; */
     height: 340px;
 
+}
+
+
+.user-not-selected-container {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.user-not-selected-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #9a9da1;
+}
+
+.arrow-left-icon {
+    margin-top: 6px;
+    color: #9a9da1;
 }
