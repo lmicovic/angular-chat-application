@@ -6,6 +6,7 @@ import { UserDTO } from '../../others/models/userDto.class';
 import { CommonModule } from '@angular/common';
 import { SelectedUserService } from '../../others/services/shared-service/selected-user-service/selected-user.service';
 import { MessageDTO } from '../../others/models/messageDto.class';
+import { AuthService } from '../../others/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-messages',
@@ -19,12 +20,19 @@ export class MessagesComponent implements OnInit {
   selectedUser: UserDTO | null = null;
   selectedUserMessages: MessageDTO[] | null = null;
 
-  constructor(private selectedUserService: SelectedUserService) {
+  loggedUser: UserDTO | null = null;
+
+  constructor(private authService: AuthService, private selectedUserService: SelectedUserService) {
 
   }
 
   ngOnInit(): void {
+    this.getLoggedUser();
     this.getSelectedUser();
+  }
+
+  private getLoggedUser() {
+    this.loggedUser = this.authService.getLoggedUser();
   }
 
   private getSelectedUser() {
@@ -49,6 +57,9 @@ export class MessagesComponent implements OnInit {
   onAddToFriendList(event: MouseEvent) {
     event.preventDefault();
     alert("This feature is not supported yet!");
+
+    
+
   }
 
   onAddToGroup(event: MouseEvent) {
@@ -68,5 +79,24 @@ export class MessagesComponent implements OnInit {
   onVoiceCall(event: MouseEvent) {
     alert("This feature is not supported yet!");
   }
+
+  /**
+   * Checks if loggedUser contains selectedUser in FriendList
+   */
+  containsInFriendList() {
+
+    if(this.loggedUser !== null && this.selectedUser !== null && this.loggedUser.friendList.length > 0) {
+      
+      for(let friend of this.loggedUser.friendList) {
+        if(this.selectedUser.id === friend.id) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+    return true;
+  }
+
 
 }

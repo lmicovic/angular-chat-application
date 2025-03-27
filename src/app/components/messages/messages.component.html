@@ -32,7 +32,10 @@
                     <button class="dropbtn"><i class="fa-solid fa-ellipsis-vertical menu-icon"></i></button>
                     <div class="dropdown-content">
                       <a href="" class="dropdown-item" (click)="onViewUserProfile($event)"><i class="fa-solid fa-user"></i>View profile</a>
-                      <a href="" class="dropdown-item" (click)="onAddToFriendList($event)"><i class="fa-solid fa-people-group"></i>Add to friend list</a>
+                      <a href="" class="dropdown-item" (click)="onAddToFriendList($event)"><i class="fa-solid fa-people-group"></i>
+                        <span *ngIf="containsInFriendList() === false">Add to friend list</span>
+                        <span *ngIf="containsInFriendList() === true">Remove friend</span>
+                      </a>
                       <a href="" class="dropdown-item" (click)="onAddToGroup($event)"><i class="fa-solid fa-plus"></i> Add to group</a>
                       <a href="" class="dropdown-item" (click)="onBlock($event)"><i class="fa-regular fa-circle-xmark"></i> Block</a>
                     </div>
