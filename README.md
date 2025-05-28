@@ -2,6 +2,8 @@
 
 This is a real-time private one-to-one chat application built using [HTML](https://www.w3schools.com/html/ "HTML"), [CSS](https://www.w3schools.com/css/ "CSS"), [TypeScript](https://www.typescriptlang.org/ "TypeScript") and  [Angular17](https://angular.dev/ "Angular") framework. The application allows users to communicate securely and efficiently, providing a seamless chat experience.
 
+![Image](https://github.com/user-attachments/assets/a25d0146-68a3-49d8-a3cb-613e16c72836)
+
 ## Table of Contents
 
 - [Overview](#overview)
