@@ -36,6 +36,7 @@ Backend Application for this application is at following repository: https://git
 - **Real-time Communication:** [WebSocket](https://en.wikipedia.org/wiki/WebSocket#:~:text=WebSocket%20is%20a%20computer%20communications,as%20RFC%206455%20in%202011. "WebSocket")
 
 ## How to run
+***Note:** In order Application to work, you must have installed Angular 17.x and Node.js 20.x versions.
 1. Clone project from Github repository by typing following command in terminal:
 `git clone https://github.com/lmicovic/angular-chat-application`
 
