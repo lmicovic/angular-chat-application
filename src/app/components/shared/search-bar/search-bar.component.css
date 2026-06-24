@@ -56,3 +56,11 @@
 .search-field:focus-within .search-icon {
     color: var(--text-secondary);
 }
+
+/* Mobile — 16px text stops iOS zooming in when the field is focused */
+@media only screen and (max-width: 720px) {
+    #search-user {
+        height: 40px;
+        font-size: 16px;
+    }
+}

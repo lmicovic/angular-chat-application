@@ -107,3 +107,26 @@ app-card {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* ============================================================= */
+/*  Mobile — denser rows so more contacts fit the compact pane    */
+/* ============================================================= */
+@media only screen and (max-width: 720px) {
+    .user-list-container {
+        padding: var(--space-1) var(--space-1) var(--space-2);
+    }
+
+    .user-list-item {
+        padding: var(--space-2);
+    }
+
+    .user-list-item-info-image-container,
+    .user-profile-image {
+        width: 42px;
+        height: 42px;
+    }
+
+    .user-list-item-sub-info-container h3 {
+        font-size: 14px;
+    }
+}

@@ -78,3 +78,32 @@
     color: var(--text-secondary);
     transition: color var(--transition), transform var(--transition);
 }
+
+/* ============================================================= */
+/*  Mobile — tighter bar so it takes less of the app-shell height */
+/* ============================================================= */
+@media only screen and (max-width: 720px) {
+    .card-content {
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .brand-mark {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+
+    .brand-name {
+        font-size: 18px;
+    }
+
+    .settings-container {
+        width: 38px;
+        height: 38px;
+    }
+
+    .settings-icon {
+        font-size: 18px;
+    }
+}

@@ -48,36 +48,62 @@
     }
 }
 
-/* Mobile — stack the user list above the conversation */
+/* Mobile — become a full-screen app shell instead of a tall scrolling page.
+   The header pins to the top, then the user list and conversation share the
+   remaining viewport height, each scrolling internally. This removes the old
+   "two tall boxes you scroll the page between" feel. */
 @media only screen and (max-width: 720px) {
+    :host {
+        min-height: 100dvh;
+        padding: 0;
+    }
+
     .main-container {
         width: 100%;
-        margin: auto;
-        padding: var(--space-3);
+        max-width: none;
+        height: 100dvh;
+        margin: 0;
+        padding: var(--space-2);
+        display: flex;
+        flex-direction: column;
     }
 
     .sub-container {
+        flex: 1 1 auto;
         flex-direction: column;
         height: auto;
-        gap: var(--space-3);
+        min-height: 0;
+        gap: var(--space-2);
+        margin-top: var(--space-2);
     }
 
     .left-panel,
     .right-panel {
-        flex: 0 0 auto;
         width: 100%;
         min-width: 0;
+        min-height: 0;
+        height: auto;
     }
 
-    /* Keep both cards usable when stacked: give each a real height
-       so the internal scroll areas (lists / messages) work on mobile. */
+    /* Compact contacts pane on top, conversation takes the rest of the screen. */
     .left-panel {
-        height: 42vh;
-        min-height: 280px;
+        flex: 0 0 36%;
+        max-height: 38vh;
     }
 
     .right-panel {
-        height: 68vh;
-        min-height: 440px;
+        flex: 1 1 auto;
+    }
+}
+
+/* Small phones — reclaim a little more space for the conversation */
+@media only screen and (max-width: 420px) {
+    .main-container {
+        padding: var(--space-1);
+    }
+
+    .left-panel {
+        flex-basis: 33%;
+        max-height: 34vh;
     }
 }

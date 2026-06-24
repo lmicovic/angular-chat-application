@@ -280,3 +280,49 @@ app-card {
     0%, 100% { transform: translateX(0); }
     50% { transform: translateX(-6px); }
 }
+
+/* ============================================================= */
+/*  Mobile — compact conversation header & roomier empty state    */
+/* ============================================================= */
+@media only screen and (max-width: 720px) {
+    .message-header-container {
+        min-height: 56px;
+        padding: var(--space-2) var(--space-3);
+        gap: var(--space-2);
+    }
+
+    .user-image-profile-container img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .user-message-profile-information-user-name {
+        font-size: 14px;
+    }
+
+    /* Keep the call + menu controls grouped tightly so a long name has room */
+    .icon-container {
+        gap: 0;
+    }
+
+    .icon,
+    .dropbtn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .user-not-selected-container {
+        padding: var(--space-5);
+    }
+
+    .user-not-selected-title {
+        font-size: 15px;
+    }
+}
+
+/* Very small phones — drop the message count line; the name is what matters */
+@media only screen and (max-width: 380px) {
+    .user-message-profile-information-message-number {
+        display: none;
+    }
+}

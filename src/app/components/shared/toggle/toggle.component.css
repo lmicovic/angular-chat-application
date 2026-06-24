@@ -57,3 +57,17 @@
     background-color: var(--brand-purple);
     color: #fff;
 }
+
+/* Mobile — tighter segmented control inside the compact contacts pane */
+@media only screen and (max-width: 720px) {
+    .main-container {
+        padding: 0 var(--space-3);
+        margin-top: var(--space-2);
+        margin-bottom: var(--space-1);
+    }
+
+    .toggle-list-item {
+        padding: 6px 4px;
+        font-size: 11.5px;
+    }
+}

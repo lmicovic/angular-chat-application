@@ -166,3 +166,39 @@
     border-color: rgba(255, 120, 120, 0.4);
     background-color: rgba(120, 0, 0, 0.18);
 }
+
+/* ============================================================= */
+/*  Phones — tighter card, smaller avatar, 16px inputs (no zoom)  */
+/* ============================================================= */
+@media only screen and (max-width: 600px) {
+    .main-container {
+        width: 100%;
+        margin: var(--space-4) auto;
+        padding: 0 var(--space-3);
+    }
+
+    .card-content {
+        padding: var(--space-6) var(--space-4);
+    }
+
+    .settinhgs-title {
+        font-size: 22px;
+        margin-bottom: var(--space-5);
+    }
+
+    .user-image {
+        width: 108px;
+        height: 108px;
+    }
+
+    .form-container form input {
+        max-width: none;
+        font-size: 16px;
+    }
+
+    .change-password-button,
+    .change-profile-image-button,
+    .logout-button {
+        max-width: none;
+    }
+}

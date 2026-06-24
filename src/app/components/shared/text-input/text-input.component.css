@@ -107,3 +107,28 @@
 .attach-button:hover .attach-icon {
     color: var(--text-primary);
 }
+
+/* ============================================================= */
+/*  Mobile — tighter composer; 16px text stops iOS zoom-on-focus  */
+/* ============================================================= */
+@media only screen and (max-width: 720px) {
+    .main-container {
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .input-field-container {
+        gap: var(--space-1);
+    }
+
+    .text-area-component {
+        height: 42px;
+        padding: 10px 14px;
+        font-size: 16px;
+    }
+
+    .attach-button,
+    .send-button {
+        width: 42px;
+        height: 42px;
+    }
+}

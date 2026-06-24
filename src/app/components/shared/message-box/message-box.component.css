@@ -154,3 +154,27 @@
 .user-message-date-time-container {
     text-align: left;
 }
+
+/* ============================================================= */
+/*  Mobile — use the narrow screen better                         */
+/* ============================================================= */
+@media only screen and (max-width: 720px) {
+    .main-container {
+        padding: var(--space-3) var(--space-2);
+    }
+
+    /* Allow bubbles to grow wider since horizontal room is scarce */
+    .message-info-container {
+        max-width: 84%;
+    }
+
+    .message-content-container {
+        font-size: 14.5px;
+    }
+
+    /* Smaller avatars keep more width for the text */
+    .message-image {
+        width: 30px;
+        height: 30px;
+    }
+}
