@@ -1,45 +1,59 @@
 .main-container {
-    /* background-color: red; */
-    text-align: center; /* Center text inside the container */
-    margin-bottom: 5px;
-
+    padding: 0 var(--space-4);
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-2);
 }
 
 .toggle-list {
     list-style: none;
-    /* display: inline-block; */
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1);
+    background-color: var(--surface-2);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-pill);
 }
 
 .toggle-list-item {
-    display: inline-block;
-    padding: 5px 8px;
-    font-size: 13px;
-    color: #8d8d8d;   
-    user-select: none; /* For modern browsers */
-    -moz-user-select: none; /* Firefox */
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* Internet Explorer/Edge */
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    white-space: nowrap;
+    padding: 7px 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-radius: var(--radius-pill);
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    transition: background-color var(--transition), color var(--transition);
 }
 
 .toggle-list-item:hover {
     cursor: pointer;
-    background-color: rgba(0,0,0,0.3);
-    color: #F9F6EE;
-    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
 }
 
 .toggle-list-item:active {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(255, 255, 255, 0.04);
 }
 
 .toggle-list-item:not(:first-child):not(:last-child) {
-    /* background-color: red; */
-    margin: 0px 3px;
+    margin: 0;
 }
 
-/* Apply style to list-item that is currently active */
+/* Active segment */
 .active-list {
-    background-color: rgba(0,0,0,0.4);
-    color: #F9F6EE;
-    border-radius: 10px;
+    background-color: var(--brand-purple);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+.active-list:hover {
+    background-color: var(--brand-purple);
+    color: #fff;
 }

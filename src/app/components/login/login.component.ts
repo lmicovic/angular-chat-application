@@ -34,9 +34,10 @@ export class LoginComponent {
 
   cardStyle = {
     width: '40%',
+    maxWidth: '420px',
     height: 'auto',
-    margin: '80px auto',
-    padding: '20px'
+    margin: '0 auto',
+    padding: '24px'
   }
   
   constructor(private authService: AuthService, private userService: UserService, private router: Router) {

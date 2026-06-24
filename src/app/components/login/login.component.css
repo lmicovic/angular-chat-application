@@ -1,38 +1,61 @@
 .main-container {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6) var(--space-4);
 }
 
+/* app-card spans the centring flex container; the card's own inline
+   width / maxWidth (set in the component) caps it to a readable size. */
+.main-container app-card {
+    display: block;
+    width: 100%;
+}
+
+/* Brand lockup: gradient layered-diamond mark + wordmark + tagline */
 .logo-container {
-    position: relative;
-    width: 300px;
-    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
     text-align: center;
-    margin: 20px auto;
-    padding: 40px;
-    border: 0.5px solid rgba(0, 0, 0, 0.5);
-    border-radius: 15px;
-    background-color: rgba(150, 150, 150, 0.05);
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+    margin: var(--space-4) auto var(--space-2);
+    padding: var(--space-3);
 }
 
-.logo-container:hover {
-    cursor: pointer;
+.brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 66px;
+    height: 66px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #8b6cff 0%, #5D3FD3 60%, #4226c4 100%);
+    box-shadow: 0 12px 30px rgba(93, 63, 211, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: 28px;
 }
 
-.application-logo {
-    width: 150px;
-    height: auto;
+.brand-name {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ffffff 0%, #cbb8ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #cbb8ff;
 }
 
-.background {
-    position: absolute;
-    z-index: -1;
-    bottom: 54px;
-    left: 78px;
-    width: 143px;
-    height: 10px;
-    background-color: #e5d8b4;
+.brand-tagline {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
 }
 
 
@@ -45,8 +68,11 @@
 }
 
 .login-header {
-    color: #F9F6EE;
-    margin: 25px 0px 25px 0px;
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin: var(--space-5) 0 var(--space-6);
 }
 
 form {
@@ -62,27 +88,52 @@ form {
   /* position: absolute; */
 }
 
+/* Password field: wraps the input + reveal toggle as one control so the
+   eye button sits neatly inside the input's right edge. */
+.login-password-container {
+  position: relative;
+  display: inline-block;
+  width: 72%;
+}
+
+.login-password-container input {
+  width: 100%;
+  padding-right: 44px;
+}
+
 .login-password-show-password-button {
   position: absolute;
+  right: 6px;
+  top: 20px;                 /* vertical centre of the 40px-tall input */
+  transform: translateY(-50%);
   width: 30px;
   height: 30px;
-  margin-left: 5px;
-  background-color: rgba(0,0,0,0.12);
-  border: 1px solid rgba(0,0,0, 0.5);
-  border-radius: 5px;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition), color var(--transition);
 }
 
 .login-password-show-password-button:hover {
   cursor: pointer;
-  background-color: rgba(0,0,0,0.3);
+  background-color: var(--surface-3);
 }
 
 .login-password-show-password-button:active {
-  background-color: rgba(0,0,0,0.2);
+  background-color: var(--surface-2);
 }
 
 .login-show-password-icon {
-  color: white;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.login-password-show-password-button:hover .login-show-password-icon {
+  color: var(--text-primary);
 }
 
 
@@ -90,7 +141,7 @@ form {
   font-size: 12px;
   margin-top: 5px;
   margin-bottom: 10px;
-  color: #FFC107;
+  color: var(--warning);
 }
 
 #login-global-validation-message {
@@ -110,57 +161,124 @@ form {
 } */
 
 form input {
-    background-color: rgba(0,0,0,0.12);
+    width: 72%;
+    background-color: var(--surface-1);
     outline: none;
-    height: 30px;
-    border: 1px solid rgba(0,0,0, 0.5);
-    padding: 3px 7px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    color: #F9F6EE;
+    height: 40px;
+    border: 1px solid var(--hairline);
+    padding: 8px 12px;
+    margin-bottom: var(--space-3);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: border-color var(--transition), background-color var(--transition),
+        box-shadow var(--transition);
 }
 
-form input:focus {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
-    border: 1px solid black;
-    background-color: rgba(0,0,0,0.08);
+form input:hover {
+    border-color: var(--hairline-strong);
+}
+
+form input:focus,
+form input:focus-visible {
+    border-color: rgba(0, 255, 255, 0.55);
+    background-color: var(--surface-2);
+    box-shadow: var(--focus-ring);
 }
 
 .sign-in-container {
-    margin-top: 14px;
+    margin-top: var(--space-4);
 }
 
 .sign-in-link {
-    font-size: 12px;
-    color: #00FFFF;
-    
+    font-size: 13px;
+    color: var(--accent-cyan);
+    text-decoration: none;
+    transition: opacity var(--transition);
+}
+
+.sign-in-link:hover {
+    text-decoration: underline;
+    opacity: 0.85;
 }
 
 .login-button {
-    width: 80px;
-    height: 26px;
-    margin-top: 24px;
+    min-width: 140px;
+    height: 42px;
+    padding: 0 var(--space-6);
+    margin-top: var(--space-6);
     border: none;
-    border-radius: 10px;
-    color: #F9F6EE;
-    background: linear-gradient(to top, rgba(94,68,255, 0.7) 30%, rgba(37,166,227, 0.6));    
+    border-radius: var(--radius-pill);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    background: linear-gradient(135deg, rgba(94, 68, 255, 0.95) 0%, rgba(37, 166, 227, 0.9) 100%);
+    box-shadow: var(--shadow-sm);
+    transition: filter var(--transition), transform var(--transition),
+        box-shadow var(--transition), opacity var(--transition);
 }
 
 .login-button:hover {
     cursor: pointer;
-    background: linear-gradient(to top, rgba(94,68,255, 0.6) 30%, rgba(37,166,227, 0.5));
+    filter: brightness(1.08);
+    box-shadow: var(--shadow-md);
 }
 
 .login-button:active {
-    background: linear-gradient(to top, rgba(94,68,255, 0.5) 30%, rgba(37,166,227, 0.4));
+    transform: translateY(1px);
+    filter: brightness(0.95);
+}
+
+.login-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    box-shadow: none;
+    filter: grayscale(0.2);
 }
 
 .oauth-container {
-    /* border: 1px solid black;s */
-    /* border-radius: 15px; */
-    /* height: 100px; */
-    margin: 30px 40px 40px 40px;
+    margin: var(--space-6) 0 var(--space-2);
     text-align: center;
+}
+
+/* "or continue with" divider */
+.oauth-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    max-width: 280px;
+    margin: 0 auto var(--space-5);
+    color: var(--text-tertiary);
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    text-transform: lowercase;
+}
+
+.oauth-divider::before,
+.oauth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--hairline);
+}
+
+.google-oauth-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Size the (fixed-width) Google button to align with the form fields */
+.google-oauth-container .gsi-material-button {
+    width: 72%;
+    max-width: 280px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+}
+
+.google-oauth-container .gsi-material-button:not(:disabled):hover {
+    box-shadow: var(--shadow-md);
 }
 
 /* aouth - Google */
@@ -291,27 +409,38 @@ form input:focus {
         height: 40px;
     }
 
-    form input[type=password] {
-      padding-right: 45px;
+    /* Password field wrapper matches the other inputs' width;
+       the reveal toggle stays docked inside it. */
+    .login-password-container {
+      width: 80%;
+    }
+
+    .login-password-container input {
+      width: 100%;
     }
 
     .login-password-show-password-button {
-      width: 40px;
-      height: 40px;
-      margin-left: 0px;
-      right: 10%;
-      border: none;
-    }
-
-    #signin-confirm-password-button {
-      right: 13.9%;
+      right: 6px;
+      top: 20px;
+      width: 32px;
+      height: 32px;
+      margin-left: 0;
     }
 
     .login-button {
-        width: 50%;
-        height: 40px;
-        margin-top: 40px;
-        
+        width: 60%;
+        max-width: 260px;
+        height: 44px;
+        margin-top: var(--space-6);
+    }
+
+    .google-oauth-container .gsi-material-button {
+        width: 80%;
+        max-width: none;
+    }
+
+    .oauth-divider {
+        max-width: 80%;
     }
 
 }

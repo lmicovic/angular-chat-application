@@ -1,87 +1,109 @@
 .main-container {
-    /* background-color: rgba(0,0,0,0.12); */
     position: relative;
-    background-color: rgba(0,0,0,0.05 );
+    background-color: var(--surface-1);
     width: 100%;
-    height: 85px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top: 1px solid var(--hairline);
+    border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+    padding: var(--space-3) var(--space-4);
 }
 
+/* Flex row replaces the old absolute-positioned percentage layout */
 .input-field-container {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-2);
     width: 100%;
-    text-align: center;
 }
 
 .text-area-component {
-
-    width: 85%;
-    display: inline-block;
-    /* border-radius: 10px; */
-    height: 65px;
-    padding: 10px;
+    flex: 1 1 auto;
+    min-width: 0;
+    display: block;
+    height: 44px;
+    max-height: 120px;
+    padding: 11px 16px;
+    font-size: 14px;
+    line-height: 1.4;
     outline: none;
-    background-color: rgba(0,0,0,0.12);
-    border-right-color: transparent;
-    border-left-color: transparent;
-    color: #F9F6EE;
+    background-color: var(--surface-2);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
     resize: none;
+    transition: border-color var(--transition), background-color var(--transition),
+        box-shadow var(--transition);
 }
 
+.text-area-component::placeholder {
+    color: var(--text-tertiary);
+}
+
+.text-area-component:hover {
+    border-color: var(--hairline-strong);
+}
+
+.text-area-component:focus,
+.text-area-component:focus-visible {
+    border-color: rgba(0, 255, 255, 0.45);
+    background-color: var(--surface-3);
+    box-shadow: var(--focus-ring);
+}
+
+/* Shared round action buttons */
+.attach-button,
 .send-button {
-    position: absolute;
-    width: 5.5%;
-    height: 65px;
-    border: 1px solid #737373;
-    border-left-color: rgba(115, 115, 115, 0.5);
-    border-left-width: 0.9px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background-color: rgba(0,0,0,0.12);
+    flex: 0 0 auto;
+    position: static;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-pill);
+    background-color: var(--surface-2);
+    transition: background-color var(--transition), transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.attach-button:hover,
+.send-button:hover {
+    cursor: pointer;
+    background-color: var(--surface-3);
+}
+
+.attach-button:active,
+.send-button:active {
+    background-color: var(--surface-strong);
+    transform: scale(0.94);
+}
+
+/* Send is the primary action — lift it onto the brand accent */
+.send-button {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--brand-purple), #2563eb);
+    box-shadow: var(--shadow-sm);
 }
 
 .send-button:hover {
-    cursor: pointer;
-    background-color: rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #6b4ee0, #2f6ef0);
 }
 
 .send-button:active {
-    background-color: rgba(0,0,0,0.35);
+    background: linear-gradient(135deg, #5135c4, #1f57d6);
 }
 
 .send-icon {
-    font-size: 20px;
-    color: #ece3ca;
-}
-
-.attach-button {
-    position: absolute;
-    left: calc(2.25%);
-    width: 5.5%;
-    height: 65px;
-    border: 1px solid #737373;
-    border-right-color: rgba(115, 115, 115, 0.5);
-    border-right-width: 0.9px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background-color: rgba(0,0,0,0.12);
-}
-
-.attach-button:hover {
-    cursor: pointer;
-    background-color: rgba(0,0,0,0.2);
-}
-
-.attach-button:active {
-    background-color: rgba(0,0,0,0.35);
-}
-
-.attach-button {
-    font-size: 20px;
-    color: #ece3ca;
+    font-size: 16px;
+    color: #fff;
 }
 
 .attach-icon {
     font-size: 16px;
-    color: #ece3ca;
+    color: var(--text-secondary);
+}
+
+.attach-button:hover .attach-icon {
+    color: var(--text-primary);
 }

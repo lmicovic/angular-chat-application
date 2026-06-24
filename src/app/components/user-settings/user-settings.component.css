@@ -1,128 +1,168 @@
 .main-container {
-    width: 50%;
+    width: 92%;
+    max-width: 480px;
     height: auto;
-    margin: 5% auto;
+    margin: clamp(24px, 5vh, 64px) auto;
 }
 
 .card-content {
-    padding: 40px 30px 45px 30px;
+    padding: var(--space-8) var(--space-6) var(--space-8);
 }
 
 .settinhgs-title {
-    color: #F9F6EE;
+    color: var(--text-primary);
     text-align: center;
-    margin-bottom: 25px;
-    font-size: 28px;
+    margin-bottom: var(--space-6);
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
 }
 
 .user-image-container {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: var(--space-4);
 }
 
 .user-image {
-    width: 200px;
-    height: auto;
-    border-radius: 100%;
-    
+    width: 132px;
+    height: 132px;
+    object-fit: cover;
+    border-radius: var(--radius-pill);
+    border: 3px solid var(--hairline-strong);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition), opacity var(--transition);
 }
 
 .user-image:hover {
     cursor: pointer;
+    transform: scale(1.03);
 }
 
 .user-image:active {
-    opacity: 0.8;
+    opacity: 0.85;
+    transform: scale(1);
 }
 
 .form-container {
     text-align: center;
 }
 
+/* Match input width to the action buttons for a tidy single column */
+.form-container form input {
+    width: 100%;
+    max-width: 280px;
+    height: 40px;
+}
+
 .form-profile-image-container {
-    margin-bottom: 20px;
+    margin-bottom: var(--space-5);
 }
 
-.change-password-button-container {
-    
-}
-
-.change-password-button, .change-profile-image-button {
-    width: 178px;
-    height: 30px;
-    background-color: rgba(0,0,0,0.12);
+/* Secondary / outline buttons */
+.change-password-button,
+.change-profile-image-button,
+.logout-button {
+    width: 100%;
+    max-width: 220px;
+    height: 40px;
+    background-color: var(--surface-1);
     outline: none;
-    height: 30px;
-    border: 1px solid rgba(0,0,0, 0.5);
-    padding: 3px 7px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    color: #F9F6EE;
+    border: 1px solid var(--hairline);
+    padding: 0 var(--space-4);
+    margin-bottom: var(--space-3);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: background-color var(--transition), border-color var(--transition);
 }
 
-.change-password-button:hover, .change-profile-image-button:hover {
+.change-password-button:hover,
+.change-profile-image-button:hover,
+.logout-button:hover {
     cursor: pointer;
+    background-color: var(--surface-3);
+    border-color: var(--hairline-strong);
 }
 
-.change-password-button:active {
-    opacity: 0.7;
-}
-
-.form-password-container {
-    
+.change-password-button:active,
+.change-profile-image-button:active,
+.logout-button:active {
+    background-color: var(--surface-2);
 }
 
 .save-button-container {
-    margin-top: 25px;
+    margin-top: var(--space-6);
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
 }
 
-.save-button, .cancel-button {
-    width: 85px;
-    height: 25px;
+.save-button,
+.cancel-button {
+    min-width: 100px;
+    height: 40px;
+    padding: 0 var(--space-5);
     outline: none;
     border: none;
-    border-radius: 7px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    transition: filter var(--transition), background-color var(--transition),
+        transform var(--transition);
 }
 
-.save-button:hover, .cancel-button:hover {
+.save-button:hover,
+.cancel-button:hover {
     cursor: pointer;
 }
 
-.save-button:active, .cancel-button:active {
-    opacity: 0.8;
+.save-button:active,
+.cancel-button:active {
+    transform: translateY(1px);
 }
 
+/* Primary positive action — keeps the original lime accent */
 .save-button {
-    margin-right: 10px;
+    color: #14210a;
     background-color: #AAFF00;
+    box-shadow: var(--shadow-sm);
+}
+
+.save-button:hover {
+    filter: brightness(1.06);
+}
+
+/* Subtle secondary action */
+.cancel-button {
+    color: var(--text-primary);
+    background-color: var(--surface-3);
+    border: 1px solid var(--hairline);
+}
+
+.cancel-button:hover {
+    background-color: var(--surface-strong);
 }
 
 .validation-alert {
     font-size: 12px;
     margin-top: 5px;
-    margin-bottom: 10px;
-    color: #FFC107;
+    margin-bottom: var(--space-3);
+    color: var(--warning);
 }
 
 .logout-container {
     text-align: center;
-    margin: 50px 0px 0px 0px;
+    margin-top: var(--space-8);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--hairline);
 }
 
 .logout-button {
-    width: 177px;
-    height: 30px;
-    background-color: rgba(0,0,0,0.12);
-    border: 1px solid rgba(0,0,0, 0.5);
-    border-radius: 6px;
-    color: #F9F6EE;
+    margin-bottom: 0;
+    color: #ff9b9b;
 }
 
 .logout-button:hover {
-    cursor: pointer;
-    background-color: rgba(0,0,0,0.3);
-}
-
-.logout-button:active {
-    background-color: rgba(0,0,0,0.2);
+    border-color: rgba(255, 120, 120, 0.4);
+    background-color: rgba(120, 0, 0, 0.18);
 }

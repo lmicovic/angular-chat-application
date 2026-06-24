@@ -1,30 +1,83 @@
+/* Centre the whole app block both axes within the viewport.
+   margin:auto on a flex child centres it when there's spare room, but
+   (unlike align-items:center) lets it top-align + scroll when it doesn't. */
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: clamp(16px, 4vh, 48px) 0;
+}
+
 .main-container {
     position: relative;
-    width: 50%;
+    width: 92%;
+    max-width: 880px;
     height: auto;
-    margin: 5% auto;
+    margin: auto;
 }
 
 .sub-container {
-
+    display: flex;
+    gap: var(--space-3);
     width: 100%;
-    height: 500px;
-    margin-top: 10px;
-    /* background-color: red; */
-
+    height: 520px;
+    margin-top: var(--space-3);
 }
 
 .left-panel {
-    float: left;
-    width: 28.3%;
-    height: 500px;
-    /* background-color: blue; */
-
+    flex: 0 0 30%;
+    min-width: 240px;
+    height: 100%;
 }
 
 .right-panel {
-    float: left;
-    width: 71.7%;
-    height: 500px;
-    /* background-color: green; */
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 100%;
+}
+
+/* Tablet — give the user list a little more room */
+@media only screen and (max-width: 1024px) {
+    .main-container {
+        max-width: 760px;
+    }
+
+    .left-panel {
+        flex-basis: 34%;
+        min-width: 220px;
+    }
+}
+
+/* Mobile — stack the user list above the conversation */
+@media only screen and (max-width: 720px) {
+    .main-container {
+        width: 100%;
+        margin: auto;
+        padding: var(--space-3);
+    }
+
+    .sub-container {
+        flex-direction: column;
+        height: auto;
+        gap: var(--space-3);
+    }
+
+    .left-panel,
+    .right-panel {
+        flex: 0 0 auto;
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Keep both cards usable when stacked: give each a real height
+       so the internal scroll areas (lists / messages) work on mobile. */
+    .left-panel {
+        height: 42vh;
+        min-height: 280px;
+    }
+
+    .right-panel {
+        height: 68vh;
+        min-height: 440px;
+    }
 }

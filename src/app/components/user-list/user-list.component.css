@@ -1,7 +1,31 @@
+/* Continuous height chain so the card fills the panel:
+   left-panel (defined) → :host → app-card → .card-content. */
+:host {
+    display: block;
+    height: 100%;
+    min-height: 0;
+}
+
+app-card {
+    display: block;
+    height: 100%;
+}
+
+/* Card content fills the panel as a column so the list scrolls within it.
+   (.card-content is declared in this component's template, then projected
+   into <app-card>, so this scoped style reaches it without ::ng-deep.) */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+}
 
 .user-list-container {
+    flex: 1 1 auto;
     overflow-y: auto;
-    height: 380px;
+    min-height: 0;
+    padding: var(--space-1) var(--space-2) var(--space-3);
 }
 
 .user-list {
@@ -9,55 +33,77 @@
 }
 
 .user-list-item {
-    padding: 0px 20px;
-    color: #F9F6EE;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    padding: var(--space-2) var(--space-3);
+    margin: 2px 0;
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition);
 }
 
 .user-list-item:hover {
     cursor: pointer;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(255, 255, 255, 0.07);
 }
 
 .user-list-item:active {
-    background-color: rgba(0,0,0,0.2);   
+    background-color: rgba(255, 255, 255, 0.04);
 }
 
 .user-list-item-info-container {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
     width: 100%;
 }
 
 .user-list-item-info-image-container {
-    float: left;
-    width: 50px;
-    margin-right: 16px;
-    margin-top: 7px;
+    position: relative;
+    flex: 0 0 auto;
+    width: 48px;
+    height: 48px;
+    line-height: 0;
 }
 
 .user-profile-image {
-    width: 50px;
-    height: auto;
-    border-radius: 100%;
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: var(--radius-pill);
+    border: 2px solid var(--hairline-strong);
+}
+
+/* Online presence dot, matching the "is online" status copy */
+.user-list-item-info-image-container::after {
+    content: "";
+    position: absolute;
+    right: 1px;
+    bottom: 1px;
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-pill);
+    background: var(--online);
+    border: 2px solid #11151c;
 }
 
 .user-list-item-sub-info-container {
-    float: left;
-    width: calc(100% - 66px);
-    margin-top: 15px;
-    /* background-color: red; */
-
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .user-list-item-sub-info-container h3 {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .user-list-item-sub-info-user-status-container {
-    margin-top: 1px;
-    font-size: 11px;
-    color: gray;
+    margin-top: 2px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-

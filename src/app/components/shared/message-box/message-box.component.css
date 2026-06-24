@@ -1,39 +1,76 @@
-.main-container {
-    /* background-color: red; */
-    overflow-y: auto;
-    height: 340px;
+/* Fill the height the parent reserves so the message list scrolls inside it */
+:host {
+    display: block;
+    height: 100%;
+    min-height: 0;
 }
 
+.main-container {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: var(--space-4) var(--space-3);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================================= */
+/*  Empty state                                                  */
+/* ============================================================= */
 .no-messages-container {
+    margin: auto;
     text-align: center;
-    padding-top: 30px;
+    padding: var(--space-6);
 }
 
 .no-messages-header {
     font-size: 16px;
     font-weight: 500;
-    color: #9a9da1;
+    color: var(--text-secondary);
 }
 
 .no-messages-sub-header {
-    margin-top: 6px;
+    margin-top: var(--space-2);
+    font-size: 14px;
+    color: var(--text-tertiary);
 }
 
+/* ============================================================= */
+/*  Message row                                                  */
+/*  Own messages mirror to the right for a clearer conversation  */
+/*  flow; the original two-tone bubble colours are preserved.    */
+/* ============================================================= */
 .message-container {
     display: flex;
-    /* background-color: red; */
-    padding: 10px;
-    /* margin: 5px; */
-    margin: 5px 10px;
+    align-items: flex-end;
+    gap: var(--space-2);
+    padding: 2px var(--space-2);
+    margin-top: var(--space-3);
 }
 
 .message-container:first-child {
-    margin-top: 10px;
+    margin-top: 0;
+}
+
+.my-message-container {
+    flex-direction: row-reverse;
+}
+
+/* Group consecutive messages from the same sender: tighten the gap
+   and hide the repeated avatar while keeping its column width so the
+   bubbles stay aligned. */
+.my-message-container + .my-message-container,
+.user-message-container + .user-message-container {
+    margin-top: var(--space-1);
+}
+
+.my-message-container + .my-message-container .message-image,
+.user-message-container + .user-message-container .message-image {
+    visibility: hidden;
 }
 
 .message-image-container {
-    /* float: left; */
-    /* background-color: blue; */
+    flex: 0 0 auto;
 }
 
 .message-image-container:hover {
@@ -41,35 +78,79 @@
 }
 
 .message-image {
-    width: 40px;
-    height: auto;
-    border-radius: 100%;
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: var(--radius-pill);
+    border: 2px solid var(--hairline-strong);
 }
 
 .message-info-container {
-    /* background-color: green; */
+    display: flex;
+    flex-direction: column;
+    max-width: min(76%, 460px);
+    min-width: 0;
 }
 
+.my-message-info-container {
+    align-items: flex-end;
+}
+
+.user-message-info-container {
+    align-items: flex-start;
+}
+
+/* ============================================================= */
+/*  Bubble                                                       */
+/* ============================================================= */
 .message-content-container {
-    display: table;
-    max-width: 90%;
-    margin-top: 2px;
-    margin-left: 12px;
-    padding: 11px;
-
-    background-color: rgba(137, 207, 240);
-    color: #301934;
-    border-radius: 15px;
+    width: fit-content;
+    max-width: 100%;
+    padding: 9px 13px;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--text-on-bubble);
+    background-color: var(--bubble-mine);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
-.message-date-time-container {
-    float: left;
-    font-size: 12px;
-    margin-top: 7.5px;
-    margin-left: 15px;
-    color: gray;
+/* Asymmetric corner points the bubble toward its avatar */
+.my-message-content-container {
+    background-color: var(--bubble-mine);
+    border-bottom-right-radius: var(--space-1);
 }
 
 .user-message-content-container {
-    background-color: #7FFFD4;
+    background-color: var(--bubble-theirs);
+    border-bottom-left-radius: var(--space-1);
+}
+
+/* Square off the inner corners of grouped bubbles so a run reads as one */
+.my-message-container + .my-message-container .my-message-content-container {
+    border-top-right-radius: var(--space-1);
+}
+
+.user-message-container + .user-message-container .user-message-content-container {
+    border-top-left-radius: var(--space-1);
+}
+
+/* ============================================================= */
+/*  Timestamp                                                    */
+/* ============================================================= */
+.message-date-time-container {
+    margin-top: var(--space-1);
+    padding: 0 var(--space-1);
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.my-message-date-time-container {
+    text-align: right;
+}
+
+.user-message-date-time-container {
+    text-align: left;
 }

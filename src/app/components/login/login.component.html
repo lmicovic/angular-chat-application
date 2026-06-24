@@ -5,10 +5,9 @@
         <div class="card-content">
             
             <div class="logo-container">
-                <img src="../../../assets/images/logo-3.png" class="application-logo" alt="Application Logo" />
-                <div class="background">
-
-                </div>
+                <span class="brand-mark"><i class="fa-solid fa-layer-group"></i></span>
+                <h1 class="brand-name">Connectify</h1>
+                <p class="brand-tagline">Chat beyond boundaries</p>
             </div>
 
             <!-- <hr> -->
@@ -84,6 +83,8 @@
 
     <div class="oauth-container">
 
+        <div class="oauth-divider"><span>or continue with</span></div>
+
         <div class="google-oauth-container">
             <button class="gsi-material-button" (click)="onGoogleLoginButton()">
                 <div class="gsi-material-button-state"></div>
@@ -148,11 +149,13 @@
             </div>
 
             <div class="form-password-container">
-                <input [type]="isSigninShowPassword ? 'text' : 'password'" formControlName="password" name="signin-password-value" id="signin-password-value" placeholder="Password" [ngStyle]="{marginBottom: signinForm.get('password')?.invalid && signinForm.get('password')?.touched ? '0px' : '10px'}" />
-                <button class="login-password-show-password-button" (click)="signinShowPassword($event)">
-                    <i class="fa-solid fa-eye login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowPassword === true"></i>
-                    <i class="fa-solid fa-eye-slash login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowPassword === false"></i>
-                </button>
+                <div class="login-password-container">
+                    <input [type]="isSigninShowPassword ? 'text' : 'password'" formControlName="password" name="signin-password-value" id="signin-password-value" placeholder="Password" [ngStyle]="{marginBottom: signinForm.get('password')?.invalid && signinForm.get('password')?.touched ? '0px' : '10px'}" />
+                    <button class="login-password-show-password-button" (click)="signinShowPassword($event)">
+                        <i class="fa-solid fa-eye login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowPassword === true"></i>
+                        <i class="fa-solid fa-eye-slash login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowPassword === false"></i>
+                    </button>
+                </div>
                 <div class="validation-alert" *ngIf="signinForm.get('password')?.invalid && signinForm.get('password')?.touched">
                     <span *ngIf="signinForm.get('password')?.getError('required')">*Password is required.</span>
                     <span *ngIf="signinForm.get('password')?.getError('pattern')">*Invalid passowrd format.</span>
@@ -160,11 +163,13 @@
             </div>
 
             <div class="form-confirm-password-container" >
-                <input [type]="isSigninShowConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" name="signin-confirm-password-value" (blur)="onConfigrmPasswordBlur()" id="signin-confirm-password-value" placeholder="Confirm Password" [ngStyle]="{marginBottom: signinForm.get('confirmPassword')?.invalid && signinForm.get('confirmPassword')?.touched ? '0px' : '10px'}" />
-                <button class="login-password-show-password-button" id="signin-confirm-password-button" (click)="signinShowConfirmPassword($event)">
-                    <i class="fa-solid fa-eye login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowConfirmPassword === true"></i>
-                    <i class="fa-solid fa-eye-slash login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowConfirmPassword === false"></i>
-                </button>
+                <div class="login-password-container">
+                    <input [type]="isSigninShowConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" name="signin-confirm-password-value" (blur)="onConfigrmPasswordBlur()" id="signin-confirm-password-value" placeholder="Confirm Password" [ngStyle]="{marginBottom: signinForm.get('confirmPassword')?.invalid && signinForm.get('confirmPassword')?.touched ? '0px' : '10px'}" />
+                    <button class="login-password-show-password-button" id="signin-confirm-password-button" (click)="signinShowConfirmPassword($event)">
+                        <i class="fa-solid fa-eye login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowConfirmPassword === true"></i>
+                        <i class="fa-solid fa-eye-slash login-show-password-icon login-show-password-icon-on" *ngIf="isSigninShowConfirmPassword === false"></i>
+                    </button>
+                </div>
                 <div class="validation-alert" *ngIf="signinForm.get('confirmPassword')?.invalid && signinForm.get('confirmPassword')?.touched">
                     <span *ngIf="signinForm.get('confirmPassword')?.getError('required')">*Confirm Password is required.</span>
                     <span *ngIf="signinForm.get('confirmPassword')?.getError('notSame')">*Passwords are not the same.</span>
@@ -189,6 +194,8 @@
     </div>
 
     <div class="oauth-container">
+
+        <div class="oauth-divider"><span>or continue with</span></div>
 
         <div class="google-oauth-container">
             <button class="gsi-material-button" (click)="onGoogleSigninButton()">
